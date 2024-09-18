@@ -7,14 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2B8C3A2C9ADC230019C955 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C372C9ADC230019C955 /* Strings+Generated.swift */; };
+		0C2B8C3B2C9ADC230019C955 /* Images+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C382C9ADC230019C955 /* Images+Generated.swift */; };
+		0C2B8C3C2C9ADC230019C955 /* Colors+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C392C9ADC230019C955 /* Colors+Generated.swift */; };
+		0C2B8C402C9ADC780019C955 /* Strings+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C3F2C9ADC780019C955 /* Strings+Extensions.swift */; };
+		0C2B8C422C9ADC8A0019C955 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C412C9ADC8A0019C955 /* UIDevice+Extensions.swift */; };
 		0CA0F0522C9859A400569EBC /* FilmFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA0F0512C9859A400569EBC /* FilmFinderApp.swift */; };
 		0CA0F0542C9859A400569EBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA0F0532C9859A400569EBC /* ContentView.swift */; };
 		0CA0F0562C9859A500569EBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA0F0552C9859A500569EBC /* Assets.xcassets */; };
 		0CA0F05A2C9859A500569EBC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA0F0592C9859A500569EBC /* Preview Assets.xcassets */; };
 		0CA0F0632C985DC800569EBC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CA0F0622C985DC800569EBC /* Launch Screen.storyboard */; };
+		0CA0F0B72C98C61800569EBC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CA0F0B52C98C61800569EBC /* Localizable.strings */; };
+		0CA0F0B92C98C6C900569EBC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA0F0B82C98C6C900569EBC /* Colors.xcassets */; };
+		0CA0F0BB2C98C6E100569EBC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA0F0BA2C98C6E100569EBC /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C2B8C372C9ADC230019C955 /* Strings+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Strings+Generated.swift"; path = "../../../../_FilmFinder/FilmFinder/Core/Generated/Strings+Generated.swift"; sourceTree = "<group>"; };
+		0C2B8C382C9ADC230019C955 /* Images+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Images+Generated.swift"; path = "../../../../_FilmFinder/FilmFinder/Core/Generated/Images+Generated.swift"; sourceTree = "<group>"; };
+		0C2B8C392C9ADC230019C955 /* Colors+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Colors+Generated.swift"; path = "../../../../_FilmFinder/FilmFinder/Core/Generated/Colors+Generated.swift"; sourceTree = "<group>"; };
+		0C2B8C3F2C9ADC780019C955 /* Strings+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Extensions.swift"; sourceTree = "<group>"; };
+		0C2B8C412C9ADC8A0019C955 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		0CA0F04E2C9859A400569EBC /* FilmFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA0F0512C9859A400569EBC /* FilmFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmFinderApp.swift; sourceTree = "<group>"; };
 		0CA0F0532C9859A400569EBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -22,6 +35,9 @@
 		0CA0F0572C9859A500569EBC /* FilmFinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FilmFinder.entitlements; sourceTree = "<group>"; };
 		0CA0F0592C9859A500569EBC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0CA0F0622C985DC800569EBC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		0CA0F0B62C98C61800569EBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0CA0F0B82C98C6C900569EBC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		0CA0F0BA2C98C6E100569EBC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C2B8C3E2C9ADC5F0019C955 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0C2B8C3F2C9ADC780019C955 /* Strings+Extensions.swift */,
+				0C2B8C412C9ADC8A0019C955 /* UIDevice+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0CA0F0452C9859A400569EBC = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +79,7 @@
 		0CA0F0502C9859A400569EBC /* FilmFinder */ = {
 			isa = PBXGroup;
 			children = (
+				0CA0F0642C986B3D00569EBC /* Core */,
 				0CA0F0B42C98C5DE00569EBC /* Resources */,
 				0CA0F0532C9859A400569EBC /* ContentView.swift */,
 			);
@@ -68,6 +94,25 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		0CA0F0642C986B3D00569EBC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0C2B8C3E2C9ADC5F0019C955 /* Extensions */,
+				0CA0F06A2C986BBA00569EBC /* Generated */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		0CA0F06A2C986BBA00569EBC /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				0C2B8C392C9ADC230019C955 /* Colors+Generated.swift */,
+				0C2B8C382C9ADC230019C955 /* Images+Generated.swift */,
+				0C2B8C372C9ADC230019C955 /* Strings+Generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		0CA0F0B42C98C5DE00569EBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +121,9 @@
 				0CA0F0552C9859A500569EBC /* Assets.xcassets */,
 				0CA0F0572C9859A500569EBC /* FilmFinder.entitlements */,
 				0CA0F0582C9859A500569EBC /* Preview Content */,
+				0CA0F0B52C98C61800569EBC /* Localizable.strings */,
+				0CA0F0B82C98C6C900569EBC /* Colors.xcassets */,
+				0CA0F0BA2C98C6E100569EBC /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -88,6 +136,8 @@
 			buildConfigurationList = 0CA0F05D2C9859A500569EBC /* Build configuration list for PBXNativeTarget "FilmFinder" */;
 			buildPhases = (
 				0CA0F04A2C9859A400569EBC /* Sources */,
+				0CA0F0BC2C98CA0F00569EBC /* SwiftGen */,
+				0CA0F0B12C98B15B00569EBC /* SwiftLint */,
 				0CA0F04B2C9859A400569EBC /* Frameworks */,
 				0CA0F04C2C9859A400569EBC /* Resources */,
 			);
@@ -142,7 +192,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CA0F0B72C98C61800569EBC /* Localizable.strings in Resources */,
+				0CA0F0BB2C98C6E100569EBC /* Images.xcassets in Resources */,
 				0CA0F0632C985DC800569EBC /* Launch Screen.storyboard in Resources */,
+				0CA0F0B92C98C6C900569EBC /* Colors.xcassets in Resources */,
 				0CA0F05A2C9859A500569EBC /* Preview Assets.xcassets in Resources */,
 				0CA0F0562C9859A500569EBC /* Assets.xcassets in Resources */,
 			);
@@ -150,17 +203,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0CA0F0B12C98B15B00569EBC /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		0CA0F0BC2C98CA0F00569EBC /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftgen >/dev/null; then\n    swiftgen\nelse\n    echo \"warning: SwiftGen not installed. Use: brew install swiftgen\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0CA0F04A2C9859A400569EBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C2B8C402C9ADC780019C955 /* Strings+Extensions.swift in Sources */,
 				0CA0F0542C9859A400569EBC /* ContentView.swift in Sources */,
+				0C2B8C3B2C9ADC230019C955 /* Images+Generated.swift in Sources */,
+				0C2B8C3C2C9ADC230019C955 /* Colors+Generated.swift in Sources */,
 				0CA0F0522C9859A400569EBC /* FilmFinderApp.swift in Sources */,
+				0C2B8C3A2C9ADC230019C955 /* Strings+Generated.swift in Sources */,
+				0C2B8C422C9ADC8A0019C955 /* UIDevice+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0CA0F0B52C98C61800569EBC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0CA0F0B62C98C61800569EBC /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0CA0F05B2C9859A500569EBC /* Debug */ = {
