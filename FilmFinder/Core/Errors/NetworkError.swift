@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct NetworkError: Error, Equatable {
-    public let errorType: NetworkErrorType
-    public let url: URL?
-    public let message: String?
+struct NetworkError: Error, Equatable {
+    let errorType: NetworkErrorType
+    let url: URL?
+    let message: String?
     
-    public init(
+    init(
         errorType: NetworkErrorType,
         url: URL? = nil,
         message: String? = nil
@@ -23,7 +23,7 @@ public struct NetworkError: Error, Equatable {
     }
 }
 
-public enum NetworkErrorType {
+enum NetworkErrorType {
     case createRequest
     case response
 

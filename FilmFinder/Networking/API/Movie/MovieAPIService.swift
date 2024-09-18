@@ -6,17 +6,15 @@
 //
 
 import Foundation
+import Factory
 
-public protocol MovieAPIService {
+protocol MovieAPIService {
     func getTrending(page: Int) async throws -> MoviePageDTO
 }
 
 final class MovieAPIServiceImplementation: MovieAPIService {
-    private let dispatcher: NetworkDispatcher
     
-    init(dispatcher: NetworkDispatcher) {
-        self.dispatcher = dispatcher
-    }
+    @Injected(\.networkDispatcher) private var dispatcher
     
     func getTrending(page: Int) async throws -> MoviePageDTO {
         let request = MovieRequest.getTrending(page: page)

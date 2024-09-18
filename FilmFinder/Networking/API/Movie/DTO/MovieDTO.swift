@@ -7,24 +7,14 @@
 
 import Foundation
 
-public struct MovieDTO {
-    public let id: UInt
-    public let title: String
-    public let originalTitle: String
-    public let posterPath: String?
-    public let backdropPath: String?
-    public let genreIds: [UInt]
-    public let voteAverage: Double
-
-    public init(id: UInt, title: String, originalTitle: String, posterPath: String?, backdropPath: String?, genreIds: [UInt], voteAverage: Double) {
-        self.id = id
-        self.title = title
-        self.originalTitle = originalTitle
-        self.posterPath = posterPath
-        self.backdropPath = backdropPath
-        self.genreIds = genreIds
-        self.voteAverage = voteAverage
-    }
+struct MovieDTO {
+    let id: Int
+    let title: String
+    let originalTitle: String
+    let posterPath: String?
+    let backdropPath: String?
+    let genreIds: [Int]
+    let voteAverage: Double
 }
 
 extension MovieDTO: Decodable {

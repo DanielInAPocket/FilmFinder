@@ -39,10 +39,10 @@ protocol HTTPRequest {
 }
 
 extension HTTPRequest {
-    public var host: String? { return nil }
-    public var apiVersion: APIVersion { .version3 }
-    public var method: HTTPMethod { .get }
-    public var bodyParams: [String: Any]? { nil }
-    public var queryParams: [String: Any]? { nil }
-    public var headers: [String: String]? { nil }
+    var host: String? { return nil }
+    var apiVersion: APIVersion { .version3 }
+    var method: HTTPMethod { .get }
+    var bodyParams: [String: Any]? { nil }
+    var queryParams: [String: Any]? { nil }
+    var headers: [String: String]? { nil }
 }

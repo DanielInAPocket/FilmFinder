@@ -14,21 +14,47 @@ protocol MovieRepository {
 
 class MovieRepositoryImplementation: MovieRepository {
     
-    private let apiService: MovieAPIService
+    @Injected(\.movieAPIService) private var apiService
+    @Injected(\.listStorage) private var listStorage
+    @Injected(\.movieStorage) private var movieStorage
     
-    init(apiService: MovieAPIService) {
-        self.apiService = apiService
-    }
-
-    // TODO: Add cache support
     func getTrending(page: Int) async -> RepositoryResult<MoviePage> {
         do {
-            let moviePageDTO = try await self.apiService.getTrending(page: page)
-            
-            let moviePage = MovieMapper.mapToDomain(moviePageDTO)
+            let moviePage = try await tryFetchAndSaveTrendingMovies(page: page)
             return .latest(data: moviePage)
         } catch {
-            return .failure(error: error)
+            do {
+                let moviePage = try tryLoadingCachedTrendingMovies()
+                return .fallback(data: moviePage, error: error)
+            } catch {
+                return .failure(error: error)
+            }
         }
+    }
+}
+
+private extension MovieRepositoryImplementation {
+    func tryFetchAndSaveTrendingMovies(page: Int) async throws -> MoviePage {
+        let moviePageDTO = try await apiService.getTrending(page: page)
+        let moviePage = MovieMapper.mapToDomain(moviePageDTO)
+
+        try movieStorage.save(contentsOf: moviePage.movies.map { MovieMapper.mapToDAO($0) })
+
+        // NOTE: We override trending list storage for 1st page fetch to always store latest trends
+        if page == 1 {
+            try listStorage.override(.init(type: ListType.trending.rawValue, movieIds: moviePage.movies.map { $0.id }))
+        } else {
+            try listStorage.append(.init(type: ListType.trending.rawValue, movieIds: moviePage.movies.map { $0.id }))
+        }
+
+        return moviePage
+    }
+    
+    func tryLoadingCachedTrendingMovies() throws -> MoviePage {
+        let listDAO = try listStorage.loadTrending()
+        let movieDAOs = try movieStorage.loadByIds(Array(listDAO.movieIds))
+        let movies = movieDAOs.map { MovieMapper.mapToDomain($0) }
+        
+        return MoviePage(page: 1, movies: movies, totalPages: 1)
     }
 }

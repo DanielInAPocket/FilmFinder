@@ -7,18 +7,11 @@
 
 import Foundation
 
-public struct MoviePageDTO {
-    public let page: UInt
-    public let results: [MovieDTO]
-    public let totalPages: UInt
-    public let totalResults: UInt
-
-    public init(page: UInt, results: [MovieDTO], totalPages: UInt, totalResults: UInt) {
-        self.page = page
-        self.results = results
-        self.totalPages = totalPages
-        self.totalResults = totalResults
-    }
+struct MoviePageDTO {
+    let page: Int
+    let results: [MovieDTO]
+    let totalPages: Int
+    let totalResults: Int
 }
 
 extension MoviePageDTO: Decodable {

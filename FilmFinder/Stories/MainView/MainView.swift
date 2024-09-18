@@ -7,11 +7,11 @@
 
 import SwiftUI
 import SFSafeSymbols
-public struct MainView: View {
+struct MainView: View {
     
     @State private var selectedTab = ApplicationTab.trending
 
-    public var body: some View {
+    var body: some View {
         TabView(
             selection: $selectedTab,
             content: {

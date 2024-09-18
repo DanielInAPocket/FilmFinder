@@ -8,10 +8,10 @@
 import Foundation
 import Factory
 
-public extension Container {
+extension Container {
     
-    internal var movieRepository: Factory<MovieRepository> {
-        self { MovieRepositoryImplementation(apiService: self.movieAPIService()) }
+    var movieRepository: Factory<MovieRepository> {
+        self { MovieRepositoryImplementation() }
             .singleton
     }
 }

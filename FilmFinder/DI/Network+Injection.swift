@@ -8,25 +8,25 @@
 import Foundation
 import Factory
 
-public extension Container {
+extension Container {
     
-    internal var networkDispatcher: Factory<NetworkDispatcher> {
+    var networkDispatcher: Factory<NetworkDispatcher> {
         self { NetworkDispatcherImplementation() }
     }
 
-    internal var responseParser: Factory<ResponseParser> {
+    var responseParser: Factory<ResponseParser> {
         self { ResponseParserImplementation() }
     }
 
-    internal var requestFactory: Factory<RequestFactory> {
+    var requestFactory: Factory<RequestFactory> {
         self { RequestFactoryImplementation() }
     }
 
-    internal var errorFactory: Factory<NetworkErrorFactory> {
-        self { NetworkErrorFactoryImplementation(responseParser: self.responseParser()) }
+    var errorFactory: Factory<NetworkErrorFactory> {
+        self { NetworkErrorFactoryImplementation() }
     }
     
-    internal var movieAPIService: Factory<MovieAPIService> {
-        self { MovieAPIServiceImplementation(dispatcher: self.networkDispatcher()) }
+    var movieAPIService: Factory<MovieAPIService> {
+        self { MovieAPIServiceImplementation() }
     }
 }

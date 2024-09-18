@@ -17,6 +17,8 @@ struct MovieMapper {
         )
     }
     
+    // MARK: - Movie
+    
     static func mapToDomain(_ dto: MovieDTO) -> Movie {
         return Movie(
             id: dto.id,
@@ -26,6 +28,30 @@ struct MovieMapper {
             backdropPath: dto.backdropPath,
             genres: dto.genreIds,
             rating: dto.voteAverage
+        )
+    }
+    
+    static func mapToDomain(_ dao: MovieDAO) -> Movie {
+        return Movie(
+            id: dao.id,
+            title: dao.title,
+            originalTitle: dao.originalTitle,
+            posterPath: dao.posterPath,
+            backdropPath: dao.backdropPath,
+            genres: dao.genres.map { $0 },
+            rating: dao.rating
+        )
+    }
+
+    static func mapToDAO(_ model: Movie) -> MovieDAO {
+        MovieDAO(
+            id: model.id,
+            title: model.title,
+            originalTitle: model.originalTitle,
+            posterPath: model.posterPath,
+            backdropPath: model.backdropPath,
+            genres: model.genres,
+            rating: model.rating
         )
     }
 }

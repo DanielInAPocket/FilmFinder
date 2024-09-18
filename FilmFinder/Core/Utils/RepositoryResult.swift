@@ -7,12 +7,12 @@
 
 import Foundation
 
-public enum RepositoryResult<Data> {
+enum RepositoryResult<Data> {
     case latest(data: Data)
     case fallback(data: Data, error: Error)
     case failure(error: Error)
     
-    public func getData() -> Data? {
+    func getData() -> Data? {
         switch self {
         case .latest(let data), .fallback(let data, _):
             return data
@@ -21,7 +21,7 @@ public enum RepositoryResult<Data> {
         }
     }
     
-    public func getError() -> Error? {
+    func getError() -> Error? {
         switch self {
         case .failure(let error), .fallback(_, let error):
             return error

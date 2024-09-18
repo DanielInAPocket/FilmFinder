@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UIDevice {
+extension UIDevice {
         
     /// Tells if app is currently running in XCTest mode.
     /// - See Also: [Check if app is running Unit Tests the Swift way](

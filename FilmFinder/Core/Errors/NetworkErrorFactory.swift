@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Factory
 
 protocol NetworkErrorFactory {
     func makeNetworkError(_ data: Data?, response: HTTPURLResponse) -> Error
@@ -14,11 +15,7 @@ protocol NetworkErrorFactory {
 
 final class NetworkErrorFactoryImplementation: NetworkErrorFactory {
     
-    private let responseParser: ResponseParser
-    
-    init(responseParser: ResponseParser) {
-        self.responseParser = responseParser
-    }
+    @Injected(\.responseParser) private var responseParser
     
     func makeNetworkError(_ data: Data?, response: HTTPURLResponse) -> Error {
         switch response.statusCode {

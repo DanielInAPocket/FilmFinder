@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkConstants {
+struct NetworkConstants {
     static let baseUrl = "https://api.themoviedb.org"
     static let apiKey = "" // TODO: Provide `themoviedb` apiKey here
 }

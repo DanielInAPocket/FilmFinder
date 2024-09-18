@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public extension String {
+extension String {
     
     /// Returns localized string using `self` as a key.
     /// - Parameters:

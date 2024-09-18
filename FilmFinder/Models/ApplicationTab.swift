@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ApplicationTab: Hashable {
+enum ApplicationTab: Hashable {
     case trending
     case search
     case watchList

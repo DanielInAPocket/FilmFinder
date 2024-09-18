@@ -8,11 +8,11 @@
 import Foundation
 
 struct Movie: Hashable, Identifiable {
-    let id: UInt
+    let id: Int
     let title: String
     let originalTitle: String
     let posterPath: String?
     let backdropPath: String?
-    let genres: [UInt] // TODO: Replace with proper genre Model instead of IDs
+    let genres: [Int] // TODO: Replace with proper genre Model instead of IDs
     let rating: Double
 }
