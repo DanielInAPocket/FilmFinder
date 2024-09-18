@@ -10,7 +10,7 @@
 		0C2B8C3A2C9ADC230019C955 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C372C9ADC230019C955 /* Strings+Generated.swift */; };
 		0C2B8C3B2C9ADC230019C955 /* Images+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C382C9ADC230019C955 /* Images+Generated.swift */; };
 		0C2B8C3C2C9ADC230019C955 /* Colors+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C392C9ADC230019C955 /* Colors+Generated.swift */; };
-		0C2B8C402C9ADC780019C955 /* Strings+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C3F2C9ADC780019C955 /* Strings+Extensions.swift */; };
+		0C2B8C402C9ADC780019C955 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C3F2C9ADC780019C955 /* String+Extensions.swift */; };
 		0C2B8C422C9ADC8A0019C955 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B8C412C9ADC8A0019C955 /* UIDevice+Extensions.swift */; };
 		0C2B8C452C9ADEFE0019C955 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 0C2B8C442C9ADEFE0019C955 /* Factory */; };
 		0C2B8C482C9ADF040019C955 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 0C2B8C472C9ADF040019C955 /* SFSafeSymbols */; };
@@ -28,7 +28,7 @@
 		0C2B8C372C9ADC230019C955 /* Strings+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Strings+Generated.swift"; path = "../../../../_FilmFinder/FilmFinder/Core/Generated/Strings+Generated.swift"; sourceTree = "<group>"; };
 		0C2B8C382C9ADC230019C955 /* Images+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Images+Generated.swift"; path = "../../../../_FilmFinder/FilmFinder/Core/Generated/Images+Generated.swift"; sourceTree = "<group>"; };
 		0C2B8C392C9ADC230019C955 /* Colors+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Colors+Generated.swift"; path = "../../../../_FilmFinder/FilmFinder/Core/Generated/Colors+Generated.swift"; sourceTree = "<group>"; };
-		0C2B8C3F2C9ADC780019C955 /* Strings+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Extensions.swift"; sourceTree = "<group>"; };
+		0C2B8C3F2C9ADC780019C955 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		0C2B8C412C9ADC8A0019C955 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		0CA0F04E2C9859A400569EBC /* FilmFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA0F0512C9859A400569EBC /* FilmFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmFinderApp.swift; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		0C2B8C3E2C9ADC5F0019C955 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0C2B8C3F2C9ADC780019C955 /* Strings+Extensions.swift */,
+				0C2B8C3F2C9ADC780019C955 /* String+Extensions.swift */,
 				0C2B8C412C9ADC8A0019C955 /* UIDevice+Extensions.swift */,
 			);
 			path = Extensions;
@@ -257,7 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C2B8C402C9ADC780019C955 /* Strings+Extensions.swift in Sources */,
+				0C2B8C402C9ADC780019C955 /* String+Extensions.swift in Sources */,
 				0CA0F0542C9859A400569EBC /* ContentView.swift in Sources */,
 				0C2B8C3B2C9ADC230019C955 /* Images+Generated.swift in Sources */,
 				0C2B8C3C2C9ADC230019C955 /* Colors+Generated.swift in Sources */,

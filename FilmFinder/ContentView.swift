@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image(systemSymbol: .globe)
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
