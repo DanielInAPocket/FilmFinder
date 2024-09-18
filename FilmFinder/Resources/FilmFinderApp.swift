@@ -11,7 +11,7 @@ import SwiftUI
 struct FilmFinderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
