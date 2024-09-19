@@ -23,6 +23,7 @@ struct MovieCardView: View {
             
             Text(title)
                 .style(.movieTitle)
+                .multilineTextAlignment(.center)
             
             RatingView(rating: rating)
                 .frame(height: 12)

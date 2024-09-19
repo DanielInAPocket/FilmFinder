@@ -45,7 +45,7 @@ struct TrendingView: View {
     }
     
     private let columns = [
-        GridItem(.flexible(), spacing: 16, alignment: .center),
-        GridItem(.flexible(), spacing: 16, alignment: .center)
+        GridItem(.flexible(), spacing: 16, alignment: .top),
+        GridItem(.flexible(), spacing: 16, alignment: .top)
     ]
 }
