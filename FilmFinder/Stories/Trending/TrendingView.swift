@@ -31,10 +31,8 @@ struct TrendingView: View {
             LazyVGrid(columns: columns, spacing: 32) {
                 ForEach(viewModel.state.movies) { movie in
                     MovieCardView(
-                        posterUrlString: movie.posterPath,
-                        title: movie.title,
-                        rating: movie.rating,
-                        onTap: {
+                        movie: movie,
+                        onTap: { movie in
                             await viewModel.performAction(.presentMovieDetails(movie))
                         }
                     )
@@ -49,6 +47,7 @@ struct TrendingView: View {
                         }
                 }
             }
+            .padding(.bottom)
         }
         .safeAreaPadding(.top)
         .padding(.horizontal, 16)

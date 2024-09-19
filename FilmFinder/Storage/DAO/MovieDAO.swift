@@ -12,35 +12,20 @@ class MovieDAO: Object {
     
     @Persisted(primaryKey: true) var id: Int
     @Persisted var title: String
-    @Persisted var originalTitle: String
-    @Persisted var overview: String
-    @Persisted var posterPath: String?
-    @Persisted var backdropPath: String?
-    @Persisted var genres: List<Int>
+    @Persisted var posterUrl: String?
     @Persisted var rating: Double
-    @Persisted var createdAt = Date()
 
     convenience init(
         id: Int,
         title: String,
-        originalTitle: String,
-        overview: String,
-        posterPath: String?,
-        backdropPath: String?,
-        genres: [Int],
-        rating: Double,
-        createdAt: Date = Date()
+        posterUrl: String?,
+        rating: Double
     ) {
         self.init()
         
         self.id = id
         self.title = title
-        self.originalTitle = originalTitle
-        self.overview = overview
-        self.posterPath = posterPath
-        self.backdropPath = backdropPath
-        self.genres.append(objectsIn: genres)
+        self.posterUrl = posterUrl
         self.rating = rating
-        self.createdAt = createdAt
     }
 }

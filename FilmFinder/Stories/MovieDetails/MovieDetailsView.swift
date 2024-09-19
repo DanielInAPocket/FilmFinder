@@ -20,7 +20,6 @@ struct MovieDetailsView: View {
 
     var body: some View {
         ScrollView {
-            
             VStack(alignment: .leading, spacing: 12) {
                 header()
                 
@@ -30,14 +29,20 @@ struct MovieDetailsView: View {
                 Text("Storyline") // TODO: Localize
                     .style(.detailTitle)
                 
-                Text(viewModel.state.movie.overview)
+                Text(viewModel.state.details.overview)
                     .style(.details)
 
                 Text("Cast") // TODO: Localize
                     .style(.detailTitle)
+                
+                castSlider()
             }
             .padding(.horizontal)
         }
+        .task {
+            await viewModel.performAction(.initialize)
+        }
+        .navigationBarHidden(true)
         .background(Colors.background.color)
     }
     
@@ -45,14 +50,42 @@ struct MovieDetailsView: View {
     private func header() -> some View {
         VStack(spacing: 8) {
             HStack {
+                AsyncButton(
+                    action: {
+                        await viewModel.performAction(.pop)
+                    },
+                    label: {
+                        Image(systemSymbol: .arrowBackward)
+                            .foregroundColor(Colors.Button.buttonForeground.color)
+                            .frame(width: 40, height: 40)
+                            .background(Colors.Button.buttonBackground.color)
+                            .clipShape(.rect(cornerRadius: 20))
+                    }
+                )
+                
                 Spacer()
                 
-                CachedAsyncImage(
-                    url: URL(string: "https://image.tmdb.org/t/p/original/\(viewModel.state.movie.posterPath ?? "")")
+                AsyncButton(
+                    action: {
+                        await viewModel.performAction(.toggleWatchlist)
+                    },
+                    label: {
+                        Image(systemSymbol: .heart)
+                            .foregroundColor(Colors.Button.buttonForeground.color)
+                            .frame(width: 40, height: 40)
+                            .background(Colors.Button.buttonBackground.color)
+                            .clipShape(.rect(cornerRadius: 20))
+                    }
                 )
-                .scaledToFit()
-                .frame(width: UIScreen.main.bounds.size.width * 0.55)
-                .clipShape(.rect(cornerRadius: 16))
+            }
+            
+            HStack {
+                Spacer()
+                
+                CachedAsyncImage(url: viewModel.state.movie.posterUrl)
+                    .scaledToFit()
+                    .frame(width: UIScreen.main.bounds.size.width * 0.55)
+                    .clipShape(.rect(cornerRadius: 16))
 
                 Spacer()
             }
@@ -76,13 +109,25 @@ struct MovieDetailsView: View {
     @ViewBuilder
     private func detailsRow() -> some View {
         HStack {
-            details(title: "Length", value: "02:24:46") // TODO: Localize and provide data
+            details(
+                title: "Length", // TODO: Localize
+                value: String(viewModel.state.details.runtime)
+            )
             Spacer()
-            details(title: "Language", value: "English") // TODO: Localize and provide data
+            details(
+                title: "Country", // TODO: Localize
+                value: viewModel.state.details.originCountry
+             )
             Spacer()
-            details(title: "Year", value: "2015") // TODO: Localize and provide data
+            details(
+                title: "Year", // TODO: Localize
+                value: viewModel.state.details.releaseDate
+            )
             Spacer()
-            details(title: "Rating", value: "+28") // TODO: Localize and provide data
+            details(
+                title: "Popularity", // TODO: Localize
+                value: String(format: "%.1f", viewModel.state.details.popularity)
+            )
         }
     }
     
@@ -92,8 +137,23 @@ struct MovieDetailsView: View {
             Text(title)
                 .style(.detailName)
             
-            Text(value)
-                .style(.detailValue)
+            if viewModel.state.isLoading {
+                ProgressView()
+            } else {
+                Text(value)
+                    .style(.detailValue)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func castSlider() -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(alignment: .top, spacing: 16) {
+                ForEach(viewModel.state.details.actors) { actor in
+                    ActorView(actor: actor)
+                }
+            }
         }
     }
 }

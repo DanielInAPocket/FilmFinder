@@ -17,30 +17,30 @@ struct MovieMapper {
         )
     }
     
-    // MARK: - Movie
-    
     static func mapToDomain(_ dto: MovieDTO) -> Movie {
+        var posterUrl: URL?
+        if let posterPath = dto.posterPath {
+            posterUrl = URL(string: "https://image.tmdb.org/t/p/original/\(posterPath)")
+        }
+        
         return Movie(
             id: dto.id,
             title: dto.title,
-            originalTitle: dto.originalTitle,
-            overview: dto.overview,
-            posterPath: dto.posterPath,
-            backdropPath: dto.backdropPath,
-            genres: dto.genreIds,
+            posterUrl: posterUrl,
             rating: dto.voteAverage
         )
     }
     
     static func mapToDomain(_ dao: MovieDAO) -> Movie {
+        var posterUrl: URL?
+        if let posterUrlString = dao.posterUrl {
+            posterUrl = URL(string: posterUrlString)
+        }
+
         return Movie(
             id: dao.id,
             title: dao.title,
-            originalTitle: dao.originalTitle,
-            overview: dao.overview,
-            posterPath: dao.posterPath,
-            backdropPath: dao.backdropPath,
-            genres: dao.genres.map { $0 },
+            posterUrl: posterUrl,
             rating: dao.rating
         )
     }
@@ -49,11 +49,7 @@ struct MovieMapper {
         MovieDAO(
             id: model.id,
             title: model.title,
-            originalTitle: model.originalTitle,
-            overview: model.overview,
-            posterPath: model.posterPath,
-            backdropPath: model.backdropPath,
-            genres: model.genres,
+            posterUrl: model.posterUrl?.absoluteString,
             rating: model.rating
         )
     }

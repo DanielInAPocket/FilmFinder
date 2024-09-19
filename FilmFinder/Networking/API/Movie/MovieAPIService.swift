@@ -10,6 +10,7 @@ import Factory
 
 protocol MovieAPIService {
     func getTrending(page: Int) async throws -> MoviePageDTO
+    func getMovieDetails(forId id: Int) async throws -> MovieDTO
 }
 
 final class MovieAPIServiceImplementation: MovieAPIService {
@@ -19,6 +20,12 @@ final class MovieAPIServiceImplementation: MovieAPIService {
     func getTrending(page: Int) async throws -> MoviePageDTO {
         let request = MovieRequest.getTrending(page: page)
         let response: MoviePageDTO = try await dispatcher.fetch(with: request)
+        return response
+    }
+
+    func getMovieDetails(forId id: Int) async throws -> MovieDTO {
+        let request = MovieRequest.getMovieDetails(id: id)
+        let response: MovieDTO = try await dispatcher.fetch(with: request)
         return response
     }
 }

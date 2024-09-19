@@ -21,7 +21,7 @@ struct MainView: View {
                         Text(Strings.bottomMenuTrendingTitle)
                     }
                     .tag(ApplicationTab.trending)
-//                    .toolbarBackground(Colors.background.color, for: .tabBar) // TODO: What looks best?
+                    .toolbarBackground(Colors.background.color, for: .tabBar)
 
                 SearchView()
                     .tabItem {
@@ -29,7 +29,7 @@ struct MainView: View {
                         Text(Strings.bottomMenuSearchTitle)
                     }
                     .tag(ApplicationTab.search)
-//                    .toolbarBackground(Colors.background.color, for: .tabBar) // TODO: What looks best?
+                    .toolbarBackground(Colors.background.color, for: .tabBar)
 
                 WatchListView()
                     .tabItem {
@@ -37,9 +37,9 @@ struct MainView: View {
                         Text(Strings.bottomMenuWatchlistTitle)
                     }
                     .tag(ApplicationTab.watchList)
-//                    .toolbarBackground(Colors.background.color, for: .tabBar) // TODO: What looks best?
+                    .toolbarBackground(Colors.background.color, for: .tabBar)
             }
         )
-        .accentColor(Color.red) // TODO: Adjust color
+        .accentColor(Colors.Rating.starFilled.color)
     }
 }

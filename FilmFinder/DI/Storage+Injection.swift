@@ -19,6 +19,11 @@ extension Container {
             .singleton
     }
 
+    var movieDetailsStorage: Factory<MovieDetailsStorage> {
+        self { MovieDetailsStorageImplementation() }
+            .singleton
+    }
+
     var listStorage: Factory<ListStorage> {
         self { ListStorageImplementation() }
             .singleton

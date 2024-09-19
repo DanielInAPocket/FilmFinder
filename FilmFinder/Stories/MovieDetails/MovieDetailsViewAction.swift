@@ -10,4 +10,5 @@ import Foundation
 enum MovieDetailsViewAction: BaseViewAction {
     case initialize
     case pop
+    case toggleWatchlist
 }

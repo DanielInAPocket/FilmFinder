@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Factory
 import RealmSwift
 
 protocol ListStorage {
@@ -20,29 +19,25 @@ protocol ListStorage {
     func deleteByType(_ type: ListType) throws
 }
 
-class ListStorageImplementation: ListStorage {
-    @Injected(\.realmProvider) private var realmProvider
-    
+class ListStorageImplementation: BaseStorage<ListDAO>, ListStorage {
     func override(_ object: ListDAO) throws {
-        try realmProvider.realm.write {
-            realmProvider.realm.add(object, update: .modified)
-        }
+        try save(object)
     }
     
     func append(_ object: ListDAO) throws {
         let list = try loadByType(object.type)
-        try realmProvider.realm.write {
+        try realm.write {
             list.movieIds.append(objectsIn: object.movieIds)
         }
     }
     
     private func loadByType(_ type: String) throws -> ListDAO {
-        guard let object = realmProvider.realm.object(ofType: ListDAO.self, forPrimaryKey: type) else {
+        guard let object = realm.object(ofType: ListDAO.self, forPrimaryKey: type) else {
             throw StorageError.objectNotFound
         }
         return object
     }
-    
+
     func loadTrending() throws -> ListDAO {
         return try loadByType(ListType.trending.rawValue)
     }
@@ -51,18 +46,8 @@ class ListStorageImplementation: ListStorage {
         return try loadByType(ListType.watchList.rawValue)
     }
     
-    func deleteAll() throws {
-        try realmProvider.realm.write {
-            realmProvider.realm.objects(MovieDAO.self).forEach {
-                realmProvider.realm.delete($0)
-            }
-        }
-    }
-    
     func deleteByType(_ type: ListType) throws {
         let object = try loadByType(type.rawValue)
-        try realmProvider.realm.write {
-            realmProvider.realm.delete(object)
-        }
+        try delete(object)
     }
 }

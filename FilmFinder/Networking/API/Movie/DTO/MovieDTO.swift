@@ -10,23 +10,27 @@ import Foundation
 struct MovieDTO {
     let id: Int
     let title: String
-    let originalTitle: String
     let overview: String
     let posterPath: String?
-    let backdropPath: String?
-    let genreIds: [Int]
     let voteAverage: Double
+    let popularity: Double?
+    let releaseDate: String?
+    let runtime: Int?
+    let originCountry: [String]?
+    let credits: CreditsDTO?
 }
 
 extension MovieDTO: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
         case title
-        case originalTitle = "original_title"
         case overview
         case posterPath = "poster_path"
-        case backdropPath = "backdrop_path"
-        case genreIds = "genre_ids"
         case voteAverage = "vote_average"
+        case popularity
+        case releaseDate = "release_date"
+        case runtime
+        case originCountry = "origin_country"
+        case credits
     }
 }

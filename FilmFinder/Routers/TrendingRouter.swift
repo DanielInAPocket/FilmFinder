@@ -33,4 +33,8 @@ class TrendingRouter {
     func showDetails(for movie: Movie) {
         navigationState.routes.append(.movieDetails(movie))
     }
+    
+    func pop() {
+        navigationState.routes.removeLast()
+    }
 }

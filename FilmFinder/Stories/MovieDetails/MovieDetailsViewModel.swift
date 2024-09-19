@@ -20,9 +20,35 @@ class MovieDetailsViewModel: BaseViewModel<MovieDetailsViewAction, MovieDetailsV
     override func performAction(_ action: MovieDetailsViewAction) async {
         switch action {
         case .initialize:
-            break
+            await initialize()
         case .pop:
             trendingRouter.pop()
+        case .toggleWatchlist:
+            break
         }
+    }
+}
+
+private extension MovieDetailsViewModel {
+        
+    func initialize() async {
+        state.isLoading = true
+        defer {
+            state.isLoading = false
+        }
+        
+        let result = await movieRepository.getDetails(forMovieId: state.movie.id)
+        
+        if let details = result.getData() {
+            state.details = details
+        }
+        
+        if let error = result.getError() {
+            show(error: error)
+        }
+    }
+    
+    func show(error: Error) {
+        print("TODO: Imeplement error handling") // TODO: Implement
     }
 }

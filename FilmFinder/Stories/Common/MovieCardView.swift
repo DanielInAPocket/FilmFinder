@@ -6,32 +6,27 @@
 //
 
 import SwiftUI
-import NukeUI
 
 struct MovieCardView: View {
-    let posterUrlString: String?
-    let title: String
-    let rating: Double
-    let onTap: () async -> Void
+    let movie: Movie
+    let onTap: (Movie) async -> Void
     
     var body: some View {
         AsyncButton(
             action: {
-                await onTap()
+                await onTap(movie)
             },
             label: {
                 VStack(spacing: 4) {
-                    CachedAsyncImage(
-                        url: URL(string: "https://image.tmdb.org/t/p/original/\(posterUrlString ?? "")")
-                    )
-                    .clipShape(.rect(cornerRadius: 16))
-                    .padding(.bottom, 8)
+                    CachedAsyncImage(url: movie.posterUrl)
+                        .clipShape(.rect(cornerRadius: 16))
+                        .padding(.bottom, 8)
                     
-                    Text(title)
+                    Text(movie.title)
                         .style(.listTitle)
                         .multilineTextAlignment(.center)
                     
-                    RatingView(rating: rating)
+                    RatingView(rating: movie.rating)
                         .frame(height: 12)
                 }
             }
