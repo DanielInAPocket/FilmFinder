@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct TrendingViewState: BaseViewState {
+struct TrendingViewState: BaseViewState {
     var isLoading: Bool = false
     
     var page = 1

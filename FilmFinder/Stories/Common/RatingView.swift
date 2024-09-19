@@ -12,9 +12,10 @@ struct RatingView: View {
     var rating: CGFloat
     var starsCount = 5
     var maxRating = 10
-
+    var spacing: CGFloat = 4
+    
     var body: some View {
-        let stars = HStack(spacing: 4) {
+        let stars = HStack(spacing: spacing) {
             ForEach(0..<starsCount, id: \.self) { _ in
                 Image(systemSymbol: .starFill)
                     .resizable()

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public enum FontWeight {
+enum FontWeight {
     case ultraLight
     case thin
     case light
@@ -18,7 +18,7 @@ public enum FontWeight {
     case heavy
     case black
     
-    public var fontWeight: Font.Weight {
+    var fontWeight: Font.Weight {
         switch self {
         case .ultraLight: return Font.Weight.ultraLight
         case .thin: return Font.Weight.thin
@@ -32,7 +32,7 @@ public enum FontWeight {
         }
     }
     
-    public var uiFontWeight: UIFont.Weight {
+    var uiFontWeight: UIFont.Weight {
         switch self {
         case .ultraLight: return UIFont.Weight.ultraLight
         case .thin: return UIFont.Weight.thin

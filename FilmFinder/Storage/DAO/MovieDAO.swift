@@ -13,6 +13,7 @@ class MovieDAO: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var title: String
     @Persisted var originalTitle: String
+    @Persisted var overview: String
     @Persisted var posterPath: String?
     @Persisted var backdropPath: String?
     @Persisted var genres: List<Int>
@@ -23,6 +24,7 @@ class MovieDAO: Object {
         id: Int,
         title: String,
         originalTitle: String,
+        overview: String,
         posterPath: String?,
         backdropPath: String?,
         genres: [Int],
@@ -34,6 +36,7 @@ class MovieDAO: Object {
         self.id = id
         self.title = title
         self.originalTitle = originalTitle
+        self.overview = overview
         self.posterPath = posterPath
         self.backdropPath = backdropPath
         self.genres.append(objectsIn: genres)

@@ -12,21 +12,29 @@ struct MovieCardView: View {
     let posterUrlString: String?
     let title: String
     let rating: Double
+    let onTap: () async -> Void
     
     var body: some View {
-        VStack(spacing: 4) {
-            CachedAsyncImage(
-                url: URL(string: "https://image.tmdb.org/t/p/w342/\(posterUrlString ?? "")")
-            )
-            .clipShape(.rect(cornerRadius: 16))
-            .padding(.bottom, 8)
-            
-            Text(title)
-                .style(.movieTitle)
-                .multilineTextAlignment(.center)
-            
-            RatingView(rating: rating)
-                .frame(height: 12)
-        }
+        AsyncButton(
+            action: {
+                await onTap()
+            },
+            label: {
+                VStack(spacing: 4) {
+                    CachedAsyncImage(
+                        url: URL(string: "https://image.tmdb.org/t/p/original/\(posterUrlString ?? "")")
+                    )
+                    .clipShape(.rect(cornerRadius: 16))
+                    .padding(.bottom, 8)
+                    
+                    Text(title)
+                        .style(.listTitle)
+                        .multilineTextAlignment(.center)
+                    
+                    RatingView(rating: rating)
+                        .frame(height: 12)
+                }
+            }
+        )
     }
 }

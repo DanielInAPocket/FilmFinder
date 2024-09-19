@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TrendingViewAction: BaseViewAction {
+enum TrendingViewAction: BaseViewAction {
     case loadNextPage
-//    case presentMovieDetails
+    case presentMovieDetails(Movie)
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public extension Text {
+extension Text {
     func style(_ style: TextStyle) -> some View {
         font(style.font)
             .foregroundColor(style.color)

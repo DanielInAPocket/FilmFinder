@@ -8,18 +8,21 @@
 import Foundation
 import Factory
 
-public class TrendingViewModel: BaseViewModel<TrendingViewAction, TrendingViewState> {
+class TrendingViewModel: BaseViewModel<TrendingViewAction, TrendingViewState> {
     
     @Injected(\.movieRepository) private var movieRepository
+    @Injected(\.trendingRouter) private var trendingRouter
     
-    public init() {
+    init() {
         super.init(state: .init())
     }
     
-    override public func performAction(_ action: TrendingViewAction) async {
+    override func performAction(_ action: TrendingViewAction) async {
         switch action {
         case .loadNextPage:
             await fetchPage(page: state.page)
+        case .presentMovieDetails(let movie):
+            trendingRouter.showDetails(for: movie)
         }
     }
 }

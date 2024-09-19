@@ -7,4 +7,4 @@
 
 import Foundation
 
-public protocol BaseViewAction {}
+protocol BaseViewAction {}

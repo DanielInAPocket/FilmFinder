@@ -11,8 +11,16 @@ import Factory
 struct TrendingView: View {
     
     @StateObject private var viewModel = TrendingViewModel()
-
+    @ObservedObject var navigationState = Container.shared.trendingNavigationState()
+    
     var body: some View {
+        NavigationStack(path: $navigationState.routes) {
+            rootView
+                .navigationDestination(for: TrendingRoute.self) { $0 }
+        }
+    }
+    
+    @ViewBuilder private var rootView: some View {
         ScrollView(showsIndicators: false) {
             HStack(spacing: 0) {
                 Text(Strings.trendingHeadline)
@@ -25,7 +33,10 @@ struct TrendingView: View {
                     MovieCardView(
                         posterUrlString: movie.posterPath,
                         title: movie.title,
-                        rating: movie.rating
+                        rating: movie.rating,
+                        onTap: {
+                            await viewModel.performAction(.presentMovieDetails(movie))
+                        }
                     )
                 }
                 

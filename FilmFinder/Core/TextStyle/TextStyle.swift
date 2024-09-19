@@ -7,49 +7,68 @@
 
 import SwiftUI
 
-public enum TextStyle: String, CaseIterable {
+enum TextStyle: String, CaseIterable {
     case headline
+    case listTitle
     case movieTitle
+    case movieRating
+    case detailName
+    case detailValue
+    case detailTitle
+    case details
     
     private var size: CGFloat {
         switch self {
         case .headline: return 34
-        case .movieTitle: return 16
+        case .listTitle: return 16
+        case .movieTitle: return 24
+        case .movieRating: return 34
+        case .detailName: return 14
+        case .detailValue: return 14
+        case .detailTitle: return 18
+        case .details: return 16
         }
     }
     
     private var weight: FontWeight {
         switch self {
         case .headline: return .bold
-        case .movieTitle: return .medium
+        case .listTitle: return .medium
+        case .movieTitle: return .heavy
+        case .movieRating: return .heavy
+        case .detailName: return .medium
+        case .detailValue: return .medium
+        case .detailTitle: return .heavy
+        case .details: return .medium
         }
     }
     
     private var colorAsset: ColorAsset {
         switch self {
-        case .headline: return Colors.Text.textPrimary
-        case .movieTitle: return Colors.Text.textPrimary
+        case .movieRating: return Colors.Text.textSecondary
+        case .detailName: return Colors.Text.textSecondary
+        case .details: return Colors.Text.textSecondary
         default: return Colors.Text.textPrimary
         }
     }
     
-    public var font: Font {
+    var font: Font {
         return Font.system(size: size).weight(weight.fontWeight)
     }
     
-    public var uiFont: UIFont {
+    var uiFont: UIFont {
         return UIFont.systemFont(ofSize: size, weight: weight.uiFontWeight)
     }
 
-    public var color: Color {
+    var color: Color {
         colorAsset.color
     }
     
-    public var uiColor: UIColor {
+    var uiColor: UIColor {
         colorAsset.uiColor
     }
     
-    public var asAttributes: [NSAttributedString.Key: Any] {
+    var asAttributes: [NSAttributedString.Key: Any] {
         return [
             .font: self.uiFont,
             .foregroundColor: UIColor(self.color)
@@ -69,7 +88,7 @@ struct NewTextStyle_Previews: PreviewProvider {
                         line.frame(width: 8)
                         
                         Text(style.rawValue)
-                            .font(TextStyle.movieTitle.font.monospaced())
+                            .font(TextStyle.listTitle.font.monospaced())
                             .foregroundColor(.black.opacity(0.3))
                         
                         line

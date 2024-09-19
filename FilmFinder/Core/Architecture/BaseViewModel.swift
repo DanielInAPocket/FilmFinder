@@ -10,15 +10,15 @@ import SwiftUI
 import Combine
 
 @MainActor
-open class BaseViewModel<A: BaseViewAction, S: BaseViewState>: ObservableObject {
+class BaseViewModel<A: BaseViewAction, S: BaseViewState>: ObservableObject {
     
-    @Published public var state: S
+    @Published var state: S
     
-    public var cancellableBag = Set<AnyCancellable>()
+    var cancellableBag = Set<AnyCancellable>()
 
-    public init(state: S) {
+    init(state: S) {
         self.state = state
     }
 
-    open func performAction(_ action: A) async { }
+    func performAction(_ action: A) async { }
 }

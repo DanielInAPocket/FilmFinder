@@ -9,7 +9,7 @@ import SwiftUI
 
 /// - See Also: [View Extensions for Better Code Readability](
 ///     https://swiftui-lab.com/view-extensions-for-better-code-readability/)
-public extension View {
+extension View {
 
     /// Applies `modifier` if `condition` is `true`, otherwise `self` is returned.
     @ViewBuilder func modifier<M: ViewModifier>(
