@@ -19,8 +19,22 @@ public typealias Colors = ColorAsset
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public extension ColorAsset {
-  static let test = ColorAsset(name: "Test")
-  static let testTwo = ColorAsset(name: "TestTwo")
+  static let background = ColorAsset(name: "Background")
+  static let loaderBackground = ColorAsset(name: "LoaderBackground")
+  enum Rating {
+    static let star = ColorAsset(name: "Star")
+    static let starFilled = ColorAsset(name: "StarFilled")
+  }
+  enum System {
+    static let caution = ColorAsset(name: "Caution")
+    static let success = ColorAsset(name: "Success")
+    static let warning = ColorAsset(name: "Warning")
+  }
+  enum Text {
+    static let textPrimary = ColorAsset(name: "TextPrimary")
+    static let textSecondary = ColorAsset(name: "TextSecondary")
+    static let textTertiary = ColorAsset(name: "TextTertiary")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

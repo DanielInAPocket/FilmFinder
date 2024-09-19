@@ -17,8 +17,7 @@
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum Images {
-  public static let test = ImageAsset(name: "Test")
-  public static let testTwo = ImageAsset(name: "TestTwo")
+  public static let moviePlaceholder = ImageAsset(name: "MoviePlaceholder")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

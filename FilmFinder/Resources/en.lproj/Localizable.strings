@@ -1,2 +1,7 @@
-"test" = "Test";
-"testTwo" = "Test";
+// Main
+"bottom_menu_trending_title" = "Trending";
+"bottom_menu_search_title" = "Search";
+"bottom_menu_watchlist_title" = "Watchlist";
+
+// Trending screen
+"trending_headline" = "Trending";

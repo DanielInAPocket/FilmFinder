@@ -9,14 +9,43 @@ import SwiftUI
 import Factory
 
 struct TrendingView: View {
-    @Injected(\.movieRepository) private var movieRepository
     
+    @StateObject private var viewModel = TrendingViewModel()
+
     var body: some View {
-        Color.red
-            .task {
-                let result = await movieRepository.getTrending(page: 1)
-                print(result.getError())
-                print(result.getData())
+        ScrollView(showsIndicators: false) {
+            HStack(spacing: 0) {
+                Text(Strings.trendingHeadline)
+                    .style(.headline)
+                Spacer()
             }
+
+            LazyVGrid(columns: columns, spacing: 32) {
+                ForEach(viewModel.state.movies) { movie in
+                    MovieCardView(
+                        posterUrlString: movie.posterPath,
+                        title: movie.title,
+                        rating: movie.rating
+                    )
+                }
+                
+                if viewModel.state.hasNextPage {
+                    LoaderCardView()
+                        .onAppear {
+                            Task {
+                                await viewModel.performAction(.loadNextPage)
+                            }
+                        }
+                }
+            }
+        }
+        .safeAreaPadding(.top)
+        .padding(.horizontal, 16)
+        .background(Colors.background.color)
     }
+    
+    private let columns = [
+        GridItem(.flexible(), spacing: 16, alignment: .center),
+        GridItem(.flexible(), spacing: 16, alignment: .center)
+    ]
 }

@@ -31,9 +31,8 @@ class ListStorageImplementation: ListStorage {
     
     func append(_ object: ListDAO) throws {
         let list = try loadByType(object.type)
-        list.movieIds.append(objectsIn: object.movieIds)
         try realmProvider.realm.write {
-            realmProvider.realm.add(list, update: .modified)
+            list.movieIds.append(objectsIn: object.movieIds)
         }
     }
     

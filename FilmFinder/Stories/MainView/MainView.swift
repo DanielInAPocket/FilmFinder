@@ -18,23 +18,26 @@ struct MainView: View {
                 TrendingView()
                     .tabItem {
                         Image(systemSymbol: .chartLineUptrendXyaxis)
-                        Text("Trending") // TODO: Localize
+                        Text(Strings.bottomMenuTrendingTitle)
                     }
                     .tag(ApplicationTab.trending)
+//                    .toolbarBackground(Colors.background.color, for: .tabBar) // TODO: What looks best?
 
                 SearchView()
                     .tabItem {
                         Image(systemSymbol: .magnifyingglass)
-                        Text("Search") // TODO: Localize
+                        Text(Strings.bottomMenuSearchTitle)
                     }
                     .tag(ApplicationTab.search)
+//                    .toolbarBackground(Colors.background.color, for: .tabBar) // TODO: What looks best?
 
                 WatchListView()
                     .tabItem {
                         Image(systemSymbol: .heart)
-                        Text("WatchList") // TODO: Localize
+                        Text(Strings.bottomMenuWatchlistTitle)
                     }
                     .tag(ApplicationTab.watchList)
+//                    .toolbarBackground(Colors.background.color, for: .tabBar) // TODO: What looks best?
             }
         )
         .accentColor(Color.red) // TODO: Adjust color
