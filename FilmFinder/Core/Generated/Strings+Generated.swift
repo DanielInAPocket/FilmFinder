@@ -10,14 +10,12 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum Strings {
+  /// Home
+  public static let bottomMenuHomeTitle = Strings.tr("Localizable", "bottom_menu_home_title", fallback: "Home")
   /// Search
   public static let bottomMenuSearchTitle = Strings.tr("Localizable", "bottom_menu_search_title", fallback: "Search")
-  /// Trending
-  public static let bottomMenuTrendingTitle = Strings.tr("Localizable", "bottom_menu_trending_title", fallback: "Trending")
   /// Watchlist
   public static let bottomMenuWatchlistTitle = Strings.tr("Localizable", "bottom_menu_watchlist_title", fallback: "Watchlist")
-  /// Trending
-  public static let trendingHeadline = Strings.tr("Localizable", "trending_headline", fallback: "Trending")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

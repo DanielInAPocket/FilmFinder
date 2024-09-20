@@ -9,7 +9,7 @@ import Foundation
 import Factory
 
 protocol MovieRepository {
-    func getTrending(page: Int) async -> RepositoryResult<MoviePage>
+    func getMovies(forList list: ListType, page: Int) async -> RepositoryResult<MoviePage>
     func getDetails(forMovieId movieId: Int) async -> RepositoryResult<MovieDetails>
 }
 
@@ -20,20 +20,20 @@ class MovieRepositoryImplementation: MovieRepository {
     @Injected(\.movieStorage) private var movieStorage
     @Injected(\.movieDetailsStorage) private var movieDetailsStorage
     
-    func getTrending(page: Int) async -> RepositoryResult<MoviePage> {        
+    func getMovies(forList list: ListType, page: Int) async -> RepositoryResult<MoviePage> {
         do {
-            let moviePage = try await tryFetchAndSaveTrendingMovies(page: page)
+            let moviePage = try await tryFetchAndSaveMovies(forList: list, page: page)
             return .latest(data: moviePage)
         } catch {
             do {
-                let moviePage = try tryLoadingCachedTrendingMovies()
+                let moviePage = try tryLoadingCachedMovies(forList: list)
                 return .fallback(data: moviePage, error: error)
             } catch {
                 return .failure(error: error)
             }
         }
     }
-    
+
     func getDetails(forMovieId movieId: Int) async -> RepositoryResult<MovieDetails> {
         do {
             let movieDetails = try tryLoadingCachedMovieDetails(forId: movieId)
@@ -51,26 +51,31 @@ class MovieRepositoryImplementation: MovieRepository {
 
 private extension MovieRepositoryImplementation {
     
-    // MARK: - Movies
-    
-    func tryFetchAndSaveTrendingMovies(page: Int) async throws -> MoviePage {
-        let moviePageDTO = try await apiService.getTrending(page: page)
-        let moviePage = MovieMapper.mapToDomain(moviePageDTO)
+    func tryFetchAndSaveMovies(forList list: ListType, page: Int) async throws -> MoviePage {
+        let moviePageDTO = try await apiService.getMovies(forList: list, page: page)
+        var moviePage = MovieMapper.mapToDomain(moviePageDTO)
 
         try movieStorage.save(contentsOf: moviePage.movies.map { MovieMapper.mapToDAO($0) })
 
-        // NOTE: We override trending list storage for 1st page fetch to always store latest trends
         if page == 1 {
-            try listStorage.override(.init(type: ListType.trending.rawValue, movieIds: moviePage.movies.map { $0.id }))
+            try listStorage.override(.init(type: list.rawValue, movieIds: moviePage.movies.map { $0.id }))
         } else {
-            try listStorage.append(.init(type: ListType.trending.rawValue, movieIds: moviePage.movies.map { $0.id }))
+            // NOTE: Sometimes API returns same movie on different pages.
+            // 1. Getting saved movie IDs for current list
+            // 2. Filtering fetched movies
+            // 3. Saving unique movies
+            // 4. Rebuilding movie page data
+            let savedList = try listStorage.loadBy(type: list)
+            let filteredMovies = moviePage.movies.filter { !savedList.movieIds.contains($0.id) }
+            try listStorage.append(.init(type: list.rawValue, movieIds: filteredMovies.map { $0.id }))
+            moviePage = MoviePage(page: moviePage.page, movies: filteredMovies, totalPages: moviePage.totalPages)
         }
 
         return moviePage
     }
     
-    func tryLoadingCachedTrendingMovies() throws -> MoviePage {
-        let listDAO = try listStorage.loadTrending()
+    func tryLoadingCachedMovies(forList list: ListType) throws -> MoviePage {
+        let listDAO = try listStorage.loadBy(type: list)
         let movieDAOs = try movieStorage.loadByIds(Array(listDAO.movieIds))
         let movies = movieDAOs.map { MovieMapper.mapToDomain($0) }
         return MoviePage(page: 1, movies: movies, totalPages: 1)

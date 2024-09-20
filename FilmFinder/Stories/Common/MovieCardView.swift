@@ -17,18 +17,21 @@ struct MovieCardView: View {
                 await onTap(movie)
             },
             label: {
-                VStack(spacing: 4) {
+                VStack(spacing: 8) {
                     CachedAsyncImage(url: movie.posterUrl)
                         .clipShape(.rect(cornerRadius: 16))
                         .padding(.bottom, 8)
                     
-                    Text(movie.title)
-                        .style(.listTitle)
-                        .multilineTextAlignment(.center)
-                    
                     RatingView(rating: movie.rating)
                         .frame(height: 12)
+                    
+                    Text(movie.title)
+                        .style(.listTitle)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                        .frame(height: 40, alignment: .top)
                 }
+                .frame(width: 130)
             }
         )
     }

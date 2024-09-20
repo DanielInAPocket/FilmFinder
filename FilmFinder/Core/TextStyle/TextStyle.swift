@@ -9,6 +9,7 @@ import SwiftUI
 
 enum TextStyle: String, CaseIterable {
     case headline
+    case sectionTitle
     case listTitle
     case movieTitle
     case movieRating
@@ -20,6 +21,7 @@ enum TextStyle: String, CaseIterable {
     private var size: CGFloat {
         switch self {
         case .headline: return 34
+        case .sectionTitle: return 24
         case .listTitle: return 16
         case .movieTitle: return 24
         case .movieRating: return 34
@@ -33,6 +35,7 @@ enum TextStyle: String, CaseIterable {
     private var weight: FontWeight {
         switch self {
         case .headline: return .bold
+        case .sectionTitle: return .bold
         case .listTitle: return .medium
         case .movieTitle: return .heavy
         case .movieRating: return .heavy

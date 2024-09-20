@@ -13,3 +13,14 @@ struct Movie: Hashable, Identifiable {
     let posterUrl: URL?
     let rating: Double
 }
+
+extension Movie {
+    static var empty: Movie {
+        Movie(
+            id: 0,
+            title: "Movie Title",
+            posterUrl: nil,
+            rating: 0
+        )
+    }
+}

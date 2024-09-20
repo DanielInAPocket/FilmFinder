@@ -8,11 +8,6 @@
 import Foundation
 import RealmSwift
 
-enum ListType: String {
-    case trending
-    case watchList
-}
-
 class ListDAO: Object {
     
     @Persisted(primaryKey: true) var type: String

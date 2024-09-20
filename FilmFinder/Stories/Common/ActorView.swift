@@ -18,6 +18,7 @@ struct ActorView: View {
             
             Text(actor.name)
                 .style(.listTitle)
+                .lineLimit(2)
                 .multilineTextAlignment(.center)
         }
         .frame(width: 80)

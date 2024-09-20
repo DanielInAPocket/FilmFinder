@@ -15,10 +15,10 @@ struct MainView: View {
         TabView(
             selection: $selectedTab,
             content: {
-                TrendingView()
+                HomeView()
                     .tabItem {
-                        Image(systemSymbol: .chartLineUptrendXyaxis)
-                        Text(Strings.bottomMenuTrendingTitle)
+                        Image(systemSymbol: .popcorn)
+                        Text(Strings.bottomMenuHomeTitle)
                     }
                     .tag(ApplicationTab.trending)
                     .toolbarBackground(Colors.background.color, for: .tabBar)
