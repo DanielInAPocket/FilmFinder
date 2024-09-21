@@ -48,7 +48,6 @@ final class RequestFactoryImplementation: RequestFactory {
             }
         }
         
-        // TODO: Find a better way to handle API key
         if urlString == NetworkConstants.baseUrl {
             var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
             

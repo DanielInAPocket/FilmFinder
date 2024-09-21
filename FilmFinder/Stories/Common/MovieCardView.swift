@@ -31,7 +31,6 @@ struct MovieCardView: View {
                         .multilineTextAlignment(.center)
                         .frame(height: 40, alignment: .top)
                 }
-                .frame(width: 130)
             }
         )
     }

@@ -2,3 +2,22 @@
 "bottom_menu_home_title" = "Home";
 "bottom_menu_search_title" = "Search";
 "bottom_menu_watchlist_title" = "Watchlist";
+
+// Home
+"home_navigation_title" = "Home";
+"home_now_playing_section_title" = "Now Playing";
+"home_popular_section_title" = "Popular";
+"home_trending_section_title" = "Trending";
+
+// Search
+"search_navigation_title" = "Search";
+"search_empty_message" = "Search for your favorite movie";
+"search_not_found_message" = "Nothing was found";
+
+// Movie Details
+"movie_details_storyline" = "Storyline";
+"movie_details_cast" = "Cast";
+"movie_details_length" = "Length";
+"movie_details_country" = "Country";
+"movie_details_year" = "Year";
+"movie_details_popularity" = "Popularity";

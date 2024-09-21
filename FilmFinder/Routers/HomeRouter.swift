@@ -1,5 +1,5 @@
 //
-//  TrendingRouter.swift
+//  HomeRouter.swift
 //  FilmFinder
 //
 //  Created by Daniel Klinge on 19/09/2024.
@@ -8,11 +8,11 @@
 import SwiftUI
 import Factory
 
-enum TrendingRoute: BaseRoute {
+enum HomeRoute: BaseRoute {
     case movieDetails(Movie)
 }
 
-extension TrendingRoute: View {
+extension HomeRoute: View {
     var body: some View {
         switch self {
         case .movieDetails(let movie):
@@ -21,20 +21,16 @@ extension TrendingRoute: View {
     }
 }
 
-class TrendingNavigationState: ObservableObject {
-    @Published var routes: [TrendingRoute] = []
+class HomeNavigationState: ObservableObject {
+    @Published var routes: [HomeRoute] = []
 }
 
 @MainActor
-class TrendingRouter {
+class HomeRouter {
     
-    @Injected(\.trendingNavigationState) private var navigationState
+    @Injected(\.homeNavigationState) private var navigationState
     
     func showDetails(for movie: Movie) {
         navigationState.routes.append(.movieDetails(movie))
-    }
-    
-    func pop() {
-        navigationState.routes.removeLast()
     }
 }

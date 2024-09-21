@@ -10,13 +10,23 @@ import Factory
 
 extension Container {
     
-    @MainActor var trendingRouter: Factory<TrendingRouter> {
-        self { TrendingRouter() }
+    @MainActor var homeRouter: Factory<HomeRouter> {
+        self { HomeRouter() }
             .singleton
     }
-
-    var trendingNavigationState: Factory<TrendingNavigationState> {
-        self { TrendingNavigationState() }
+    
+    @MainActor var searchRouter: Factory<SearchRouter> {
+        self { SearchRouter() }
+            .singleton
+    }
+    
+    var homeNavigationState: Factory<HomeNavigationState> {
+        self { HomeNavigationState() }
+            .singleton
+    }
+    
+    var searchNavigationState: Factory<SearchNavigationState> {
+        self { SearchNavigationState() }
             .singleton
     }
 }

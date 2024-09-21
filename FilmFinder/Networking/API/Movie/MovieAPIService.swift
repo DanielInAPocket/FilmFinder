@@ -11,6 +11,7 @@ import Factory
 protocol MovieAPIService {
     func getMovies(forList list: ListType, page: Int) async throws -> MoviePageDTO
     func getMovieDetails(forId id: Int) async throws -> MovieDTO
+    func searchMovies(withName name: String, page: Int) async throws -> MoviePageDTO
 }
 
 final class MovieAPIServiceImplementation: MovieAPIService {
@@ -46,6 +47,12 @@ final class MovieAPIServiceImplementation: MovieAPIService {
     func getMovieDetails(forId id: Int) async throws -> MovieDTO {
         let request = MovieRequest.getMovieDetails(id: id)
         let response: MovieDTO = try await dispatcher.fetch(with: request)
+        return response
+    }
+    
+    func searchMovies(withName name: String, page: Int) async throws -> MoviePageDTO {
+        let request = MovieRequest.search(forName: name, page: page)
+        let response: MoviePageDTO = try await dispatcher.fetch(with: request)
         return response
     }
 }

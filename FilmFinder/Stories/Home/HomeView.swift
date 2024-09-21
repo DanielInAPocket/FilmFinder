@@ -11,25 +11,36 @@ import Factory
 struct HomeView: View {
     
     @StateObject private var viewModel = HomeViewModel()
-    @ObservedObject var navigationState = Container.shared.trendingNavigationState()
+    @ObservedObject var navigationState = Container.shared.homeNavigationState()
     
     var body: some View {
         NavigationStack(path: $navigationState.routes) {
             rootView
-                .navigationDestination(for: TrendingRoute.self) { $0 }
+                .background(Colors.background.color)
+                .navigationTitle(Strings.homeNavigationTitle)
+                .navigationDestination(for: HomeRoute.self) { $0 }
         }
     }
     
     @ViewBuilder private var rootView: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 24) {
-                section(title: "Now Playing", sectionState: viewModel.state.nowPlaying) // TODO: Localize
-                section(title: "Popular", sectionState: viewModel.state.popular) // TODO: Localize
-                section(title: "Trending", sectionState: viewModel.state.trending) // TODO: Localize
+                section(
+                    title: Strings.homeNowPlayingSectionTitle,
+                    sectionState: viewModel.state.nowPlaying
+                )
+                
+                section(
+                    title: Strings.homeTrendingSectionTitle,
+                    sectionState: viewModel.state.popular
+                )
+                
+                section(
+                    title: Strings.homePopularSectionTitle,
+                    sectionState: viewModel.state.trending
+                )
             }
         }
-        .safeAreaPadding(.top)
-        .background(Colors.background.color)
     }
     
     @ViewBuilder
@@ -51,6 +62,7 @@ struct HomeView: View {
                                 await viewModel.performAction(.presentMovieDetails(movie))
                             }
                         )
+                        .frame(width: 130)
                     }
                     
                     if sectionState.hasNextPage {
@@ -58,6 +70,7 @@ struct HomeView: View {
                             movie: .empty,
                             onTap: { _ in }
                         )
+                        .frame(width: 130)
                         .redacted(reason: .placeholder)
                         .shimmering()
                         .onAppear {

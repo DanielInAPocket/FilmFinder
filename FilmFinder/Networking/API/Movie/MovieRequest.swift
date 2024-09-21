@@ -12,6 +12,7 @@ enum MovieRequest: HTTPRequest {
     case getPopular(page: Int)
     case getTrending(page: Int)
     case getMovieDetails(id: Int)
+    case search(forName: String, page: Int)
     
     var path: String {
         switch self {
@@ -23,6 +24,8 @@ enum MovieRequest: HTTPRequest {
             return "trending/movie/day"
         case .getMovieDetails(let id):
             return "movie/\(id)"
+        case .search:
+            return "search/movie"
         }
     }
     
@@ -36,6 +39,11 @@ enum MovieRequest: HTTPRequest {
             return ["page": page]
         case .getMovieDetails:
             return ["append_to_response": "credits"]
+        case .search(let name, let page):
+            return [
+                "query": name,
+                "page": page
+            ]
         }
     }
         
@@ -48,6 +56,8 @@ enum MovieRequest: HTTPRequest {
         case .getTrending:
             return .get
         case .getMovieDetails:
+            return .get
+        case .search:
             return .get
         }
     }

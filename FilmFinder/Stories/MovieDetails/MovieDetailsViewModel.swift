@@ -11,7 +11,7 @@ import Factory
 class MovieDetailsViewModel: BaseViewModel<MovieDetailsViewAction, MovieDetailsViewState> {
     
     @Injected(\.movieRepository) private var movieRepository
-    @Injected(\.trendingRouter) private var trendingRouter
+    @Injected(\.homeRouter) private var homeRouter
     
     init(movie: Movie) {
         super.init(state: .init(movie: movie))
@@ -21,8 +21,6 @@ class MovieDetailsViewModel: BaseViewModel<MovieDetailsViewAction, MovieDetailsV
         switch action {
         case .initialize:
             await initialize()
-        case .pop:
-            trendingRouter.pop()
         case .toggleWatchlist:
             break
         }

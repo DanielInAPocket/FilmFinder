@@ -11,6 +11,7 @@ import Factory
 protocol MovieRepository {
     func getMovies(forList list: ListType, page: Int) async -> RepositoryResult<MoviePage>
     func getDetails(forMovieId movieId: Int) async -> RepositoryResult<MovieDetails>
+    func search(for movieName: String, page: Int) async -> RepositoryResult<MoviePage>
 }
 
 class MovieRepositoryImplementation: MovieRepository {
@@ -47,9 +48,20 @@ class MovieRepositoryImplementation: MovieRepository {
             }
         }
     }
+    
+    func search(for movieName: String, page: Int) async -> RepositoryResult<MoviePage> {
+        do {
+            let movieDetails = try await tryFetchSearchedMovies(withName: movieName, page: page)
+            return .latest(data: movieDetails)
+        } catch {
+            return .failure(error: error)
+        }
+    }
 }
 
 private extension MovieRepositoryImplementation {
+    
+    // MARK: - Movie lists
     
     func tryFetchAndSaveMovies(forList list: ListType, page: Int) async throws -> MoviePage {
         let moviePageDTO = try await apiService.getMovies(forList: list, page: page)
@@ -99,5 +111,13 @@ private extension MovieRepositoryImplementation {
         let movieDetailsDAO = MovieDetailsMapper.mapToDAO(movieDetails)
         try movieDetailsStorage.save(movieDetailsDAO)
         return movieDetails
+    }
+    
+    // MARK: - Search
+    
+    func tryFetchSearchedMovies(withName name: String, page: Int) async throws -> MoviePage {
+        let moviePageDTO = try await apiService.searchMovies(withName: name, page: page)
+        let moviePage = MovieMapper.mapToDomain(moviePageDTO)
+        return moviePage
     }
 }

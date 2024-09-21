@@ -17,6 +17,7 @@ enum TextStyle: String, CaseIterable {
     case detailValue
     case detailTitle
     case details
+    case searchPlaceholder
     
     private var size: CGFloat {
         switch self {
@@ -29,6 +30,7 @@ enum TextStyle: String, CaseIterable {
         case .detailValue: return 14
         case .detailTitle: return 18
         case .details: return 16
+        case .searchPlaceholder: return 24
         }
     }
     
@@ -43,6 +45,7 @@ enum TextStyle: String, CaseIterable {
         case .detailValue: return .medium
         case .detailTitle: return .heavy
         case .details: return .medium
+        case .searchPlaceholder: return .medium
         }
     }
     
@@ -51,6 +54,7 @@ enum TextStyle: String, CaseIterable {
         case .movieRating: return Colors.Text.textSecondary
         case .detailName: return Colors.Text.textSecondary
         case .details: return Colors.Text.textSecondary
+        case .searchPlaceholder: return Colors.Text.textSecondary
         default: return Colors.Text.textPrimary
         }
     }

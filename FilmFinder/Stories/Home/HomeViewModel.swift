@@ -11,7 +11,7 @@ import Factory
 class HomeViewModel: BaseViewModel<HomeViewAction, HomeViewState> {
     
     @Injected(\.movieRepository) private var movieRepository
-    @Injected(\.trendingRouter) private var trendingRouter
+    @Injected(\.homeRouter) private var homeRouter
     
     init() {
         super.init(state: .init())
@@ -22,7 +22,7 @@ class HomeViewModel: BaseViewModel<HomeViewAction, HomeViewState> {
         case .loadNextPage(let listType):
             await fetchPage(for: listType)
         case .presentMovieDetails(let movie):
-            trendingRouter.showDetails(for: movie)
+            homeRouter.showDetails(for: movie)
         }
     }
 }
@@ -38,6 +38,10 @@ private extension HomeViewModel {
         
         listState.isLoading = true
         saveSectionState(listState, for: listType)
+        defer {
+            listState.isLoading = false
+            saveSectionState(listState, for: listType)
+        }
 
         let result = await movieRepository.getMovies(forList: listType, page: listState.page)
         
@@ -45,7 +49,6 @@ private extension HomeViewModel {
             listState.movies.append(contentsOf: moviePage.movies)
             listState.page += 1
             listState.availablePages = moviePage.totalPages
-            listState.isLoading = false
             saveSectionState(listState, for: listType)
         }
         

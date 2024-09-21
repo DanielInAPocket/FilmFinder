@@ -19,66 +19,51 @@ struct MovieDetailsView: View {
     }
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 12) {
                 header()
                 
                 detailsRow()
-                    .padding(.vertical)
-                
-                Text("Storyline") // TODO: Localize
+                    .padding()
+
+                Text(Strings.movieDetailsStoryline)
                     .style(.detailTitle)
-                
+                    .padding(.horizontal)
+
                 Text(viewModel.state.details.overview)
                     .style(.details)
+                    .padding(.horizontal)
 
-                Text("Cast") // TODO: Localize
+                Text(Strings.movieDetailsCast)
                     .style(.detailTitle)
-                
+                    .padding(.horizontal)
+
                 castSlider()
             }
-            .padding(.horizontal)
         }
+        .navigationBarTitle("", displayMode: .inline)
         .task {
             await viewModel.performAction(.initialize)
         }
-        .navigationBarHidden(true)
         .background(Colors.background.color)
     }
     
     @ViewBuilder
     private func header() -> some View {
         VStack(spacing: 8) {
-            HStack {
-                AsyncButton(
-                    action: {
-                        await viewModel.performAction(.pop)
-                    },
-                    label: {
-                        Image(systemSymbol: .arrowBackward)
-                            .foregroundColor(Colors.Button.buttonForeground.color)
-                            .frame(width: 40, height: 40)
-                            .background(Colors.Button.buttonBackground.color)
-                            .clipShape(.rect(cornerRadius: 20))
-                    }
-                )
-                
-                Spacer()
-                
-                AsyncButton(
-                    action: {
-                        await viewModel.performAction(.toggleWatchlist)
-                    },
-                    label: {
-                        Image(systemSymbol: .heart)
-                            .foregroundColor(Colors.Button.buttonForeground.color)
-                            .frame(width: 40, height: 40)
-                            .background(Colors.Button.buttonBackground.color)
-                            .clipShape(.rect(cornerRadius: 20))
-                    }
-                )
-            }
-            
+//                AsyncButton(
+//                    action: {
+//                        await viewModel.performAction(.toggleWatchlist)
+//                    },
+//                    label: {
+//                        Image(systemSymbol: .heart)
+//                            .foregroundColor(Colors.Button.buttonForeground.color)
+//                            .frame(width: 40, height: 40)
+//                            .background(Colors.Button.buttonBackground.color)
+//                            .clipShape(.rect(cornerRadius: 20))
+//                    }
+//                )
+
             HStack {
                 Spacer()
                 
@@ -110,22 +95,22 @@ struct MovieDetailsView: View {
     private func detailsRow() -> some View {
         HStack {
             details(
-                title: "Length", // TODO: Localize
+                title: Strings.movieDetailsLength,
                 value: String(viewModel.state.details.runtime)
             )
             Spacer()
             details(
-                title: "Country", // TODO: Localize
+                title: Strings.movieDetailsCountry,
                 value: viewModel.state.details.originCountry
              )
             Spacer()
             details(
-                title: "Year", // TODO: Localize
+                title: Strings.movieDetailsYear,
                 value: viewModel.state.details.releaseDate
             )
             Spacer()
             details(
-                title: "Popularity", // TODO: Localize
+                title: Strings.movieDetailsPopularity,
                 value: String(format: "%.1f", viewModel.state.details.popularity)
             )
         }
@@ -154,6 +139,7 @@ struct MovieDetailsView: View {
                     ActorView(actor: actor)
                 }
             }
+            .padding(.horizontal)
         }
     }
 }
