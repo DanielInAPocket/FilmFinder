@@ -40,6 +40,7 @@ struct HomeView: View {
                     sectionState: viewModel.state.trending
                 )
             }
+            .padding(.bottom)
         }
     }
     

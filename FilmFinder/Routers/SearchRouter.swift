@@ -33,4 +33,8 @@ class SearchRouter {
     func showDetails(for movie: Movie) {
         navigationState.routes.append(.movieDetails(movie))
     }
+    
+    func popToRoot() {
+        navigationState.routes = []
+    }
 }

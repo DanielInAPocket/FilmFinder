@@ -13,8 +13,8 @@ class MovieDetailsDAO: Object {
     @Persisted(primaryKey: true) var movieId: Int
     @Persisted var overview: String
     @Persisted var popularity: Double
-    @Persisted var releaseDate: String
-    @Persisted var runtime: Int
+    @Persisted var releaseYear: String
+    @Persisted var runtime: String
     @Persisted var originCountry: String
     @Persisted var actors: List<PersonDAO>
 
@@ -22,8 +22,8 @@ class MovieDetailsDAO: Object {
         movieId: Int,
         overview: String,
         popularity: Double,
-        releaseDate: String,
-        runtime: Int,
+        releaseYear: String,
+        runtime: String,
         originCountry: String,
         actors: [PersonDAO]
     ) {
@@ -32,7 +32,7 @@ class MovieDetailsDAO: Object {
         self.movieId = movieId
         self.overview = overview
         self.popularity = popularity
-        self.releaseDate = releaseDate
+        self.releaseYear = releaseYear
         self.runtime = runtime
         self.originCountry = originCountry
         self.actors.append(objectsIn: actors)

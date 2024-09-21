@@ -21,9 +21,9 @@ struct MovieDetailsView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 12) {
-                header()
+                header
                 
-                detailsRow()
+                detailsRow
                     .padding()
 
                 Text(Strings.movieDetailsStoryline)
@@ -38,8 +38,9 @@ struct MovieDetailsView: View {
                     .style(.detailTitle)
                     .padding(.horizontal)
 
-                castSlider()
+                castSlider
             }
+            .padding(.bottom)
         }
         .navigationBarTitle("", displayMode: .inline)
         .task {
@@ -49,7 +50,7 @@ struct MovieDetailsView: View {
     }
     
     @ViewBuilder
-    private func header() -> some View {
+    private var header: some View {
         VStack(spacing: 8) {
 //                AsyncButton(
 //                    action: {
@@ -92,7 +93,7 @@ struct MovieDetailsView: View {
     }
 
     @ViewBuilder
-    private func detailsRow() -> some View {
+    private var detailsRow: some View {
         HStack {
             details(
                 title: Strings.movieDetailsLength,
@@ -102,11 +103,11 @@ struct MovieDetailsView: View {
             details(
                 title: Strings.movieDetailsCountry,
                 value: viewModel.state.details.originCountry
-             )
+            )
             Spacer()
             details(
                 title: Strings.movieDetailsYear,
-                value: viewModel.state.details.releaseDate
+                value: viewModel.state.details.releaseYear
             )
             Spacer()
             details(
@@ -132,7 +133,7 @@ struct MovieDetailsView: View {
     }
 
     @ViewBuilder
-    private func castSlider() -> some View {
+    private var castSlider: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top, spacing: 16) {
                 ForEach(viewModel.state.details.actors) { actor in

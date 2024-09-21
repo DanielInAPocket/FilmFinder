@@ -93,6 +93,7 @@
 		0CDF23112C9ED76000D154DC /* SearchViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF23102C9ED76000D154DC /* SearchViewAction.swift */; };
 		0CDF23132C9ED76B00D154DC /* SearchViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF23122C9ED76B00D154DC /* SearchViewState.swift */; };
 		0CDF23152C9EEA4400D154DC /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF23142C9EEA4400D154DC /* SearchRouter.swift */; };
+		0CDF23172C9F00F200D154DC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF23162C9F00F200D154DC /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +181,7 @@
 		0CDF23102C9ED76000D154DC /* SearchViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewAction.swift; sourceTree = "<group>"; };
 		0CDF23122C9ED76B00D154DC /* SearchViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewState.swift; sourceTree = "<group>"; };
 		0CDF23142C9EEA4400D154DC /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		0CDF23162C9F00F200D154DC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				0C2B8C612C9AE1140019C955 /* MainView.swift */,
+				0CDF23162C9F00F200D154DC /* MainViewModel.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				0CDF22FC2C9CA45D00D154DC /* MovieDetailsDAO.swift in Sources */,
 				0CCEB73B2C9B75A500B8D071 /* Colors+Generated.swift in Sources */,
 				0CCEB7492C9C2E1A00B8D071 /* Navigation+Injection.swift in Sources */,
+				0CDF23172C9F00F200D154DC /* MainViewModel.swift in Sources */,
 				0C2B8C9B2C9AEA3C0019C955 /* NetworkDispatcher.swift in Sources */,
 				0C2B8C9A2C9AEA3C0019C955 /* NetworkConstants.swift in Sources */,
 				0CCEB73C2C9B75A500B8D071 /* Images+Generated.swift in Sources */,

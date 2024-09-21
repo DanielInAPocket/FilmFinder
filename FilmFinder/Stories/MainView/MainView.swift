@@ -6,40 +6,46 @@
 //
 
 import SwiftUI
-import SFSafeSymbols
+
 struct MainView: View {
     
-    @State private var selectedTab = ApplicationTab.trending
+    @StateObject private var viewModel = MainViewModel()
+    
+    @MainActor private var binding: Binding<ApplicationTab> {
+        .init {
+            viewModel.state.selectedTab
+        } set: { tab in
+            Task {
+                await viewModel.performAction(.tabClicked(tab))
+            }
+        }
+    }
 
     var body: some View {
-        TabView(
-            selection: $selectedTab,
-            content: {
-                HomeView()
+        TabView(selection: binding) {
+            ForEach(ApplicationTab.allCases, id: \.self) { tab in
+                tabView(for: tab)
                     .tabItem {
-                        Image(systemSymbol: .popcorn)
-                        Text(Strings.bottomMenuHomeTitle)
+                        Image(systemSymbol: tab.symbol)
+                        Text(tab.title)
                     }
-                    .tag(ApplicationTab.trending)
+                    .tag(tab)
                     .toolbarBackground(Colors.background.color, for: .tabBar)
-
-                SearchView()
-                    .tabItem {
-                        Image(systemSymbol: .magnifyingglass)
-                        Text(Strings.bottomMenuSearchTitle)
-                    }
-                    .tag(ApplicationTab.search)
-                    .toolbarBackground(Colors.background.color, for: .tabBar)
-
-                WatchListView()
-                    .tabItem {
-                        Image(systemSymbol: .heart)
-                        Text(Strings.bottomMenuWatchlistTitle)
-                    }
-                    .tag(ApplicationTab.watchList)
-                    .toolbarBackground(Colors.background.color, for: .tabBar)
+                    .toolbarBackground(.visible, for: .tabBar)
             }
-        )
+        }
         .accentColor(Colors.accent.color)
+    }
+    
+    @ViewBuilder
+    private func tabView(for tab: ApplicationTab) -> some View {
+        switch tab {
+        case .home:
+            HomeView()
+        case .search:
+            SearchView()
+        case .watchList:
+            WatchListView()
+        }
     }
 }

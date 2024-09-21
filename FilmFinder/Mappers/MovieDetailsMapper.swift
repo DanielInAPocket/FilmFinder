@@ -14,8 +14,8 @@ struct MovieDetailsMapper {
             movieId: dto.id,
             overview: dto.overview,
             popularity: dto.popularity ?? 0,
-            releaseDate: dto.releaseDate ?? "",
-            runtime: dto.runtime ?? 0,
+            releaseYear: mapReleaseDateToYearString(dto.releaseDate ?? ""),
+            runtime: mapRuntimeToString(dto.runtime ?? 0),
             originCountry: dto.originCountry?.first ?? "",
             actors: actors.map { PersonMapper.mapToDomain($0) }
         )
@@ -26,7 +26,7 @@ struct MovieDetailsMapper {
             movieId: dao.movieId,
             overview: dao.overview,
             popularity: dao.popularity,
-            releaseDate: dao.releaseDate,
+            releaseYear: dao.releaseYear,
             runtime: dao.runtime,
             originCountry: dao.originCountry,
             actors: dao.actors.map { PersonMapper.mapToDomain($0) }
@@ -38,10 +38,38 @@ struct MovieDetailsMapper {
             movieId: model.movieId,
             overview: model.overview,
             popularity: model.popularity,
-            releaseDate: model.releaseDate,
+            releaseYear: model.releaseYear,
             runtime: model.runtime,
             originCountry: model.originCountry,
             actors: model.actors.map { PersonMapper.mapToDAO($0) }
         )
     }
+    
+    private static func mapRuntimeToString(_ runtime: Int) -> String {
+        let hours = runtime / 60
+        let minutes = runtime % 60
+        return "\(hours)h \(minutes)m"
+    }
+    
+    private static func mapReleaseDateToYearString(_ releaseDate: String) -> String {
+        let dateFormatter = DateFormatter.iso8601
+        let date = dateFormatter.date(from: releaseDate)
+        if let date {
+            return "\(Calendar.current.component(.year, from: date))"
+        } else {
+            return "N/A"
+        }
+    }
+}
+
+public extension DateFormatter {
+    
+    static let iso8601: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
 }

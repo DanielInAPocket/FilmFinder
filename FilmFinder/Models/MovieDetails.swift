@@ -11,8 +11,8 @@ struct MovieDetails: Hashable, Identifiable {
     let movieId: Int
     let overview: String
     let popularity: Double
-    let releaseDate: String
-    let runtime: Int
+    let releaseYear: String
+    let runtime: String
     let originCountry: String
     let actors: [Person]
     
@@ -25,8 +25,8 @@ struct MovieDetails: Hashable, Identifiable {
             movieId: 0,
             overview: "N/A",
             popularity: 0,
-            releaseDate: "N/A",
-            runtime: 0,
+            releaseYear: "N/A",
+            runtime: "N/A",
             originCountry: "N/A",
             actors: []
         )

@@ -6,9 +6,28 @@
 //
 
 import Foundation
+import SFSafeSymbols
 
-enum ApplicationTab: Hashable {
-    case trending
+enum ApplicationTab: Hashable, CaseIterable {
+    case home
     case search
     case watchList
+}
+
+extension ApplicationTab {
+    public var title: String {
+        switch self {
+        case .home: Strings.bottomMenuHomeTitle
+        case .search: Strings.bottomMenuSearchTitle
+        case .watchList: Strings.bottomMenuWatchlistTitle
+        }
+    }
+    
+    public var symbol: SFSymbol {
+        switch self {
+        case .home: .popcorn
+        case .search: .magnifyingglass
+        case .watchList: .heart
+        }
+    }
 }
