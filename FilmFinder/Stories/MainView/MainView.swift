@@ -40,6 +40,6 @@ struct MainView: View {
                     .toolbarBackground(Colors.background.color, for: .tabBar)
             }
         )
-        .accentColor(Colors.Rating.starFilled.color)
+        .accentColor(Colors.accent.color)
     }
 }
