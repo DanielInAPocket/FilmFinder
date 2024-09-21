@@ -23,6 +23,7 @@ extension HomeRoute: View {
 
 class HomeNavigationState: ObservableObject {
     @Published var routes: [HomeRoute] = []
+    @Published var toast: Toast?
 }
 
 @MainActor
@@ -36,5 +37,11 @@ class HomeRouter {
     
     func popToRoot() {
         navigationState.routes = []
+    }
+    
+    func show(toast: Toast) {
+        withAnimation {
+            navigationState.toast = toast
+        }
     }
 }

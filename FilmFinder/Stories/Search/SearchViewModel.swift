@@ -38,7 +38,7 @@ private extension SearchViewModel {
     
     func setupBindigs() {
         querySubject
-            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .debounce(for: 0.7, scheduler: DispatchQueue.main)
             .removeDuplicates()
             .compactMap { $0 }
             .sink { [weak self] query in
@@ -98,6 +98,15 @@ private extension SearchViewModel {
     }
     
     func show(error: Error) {
-        print("TODO: Imeplement error handling") // TODO: Implement
+        switch error {
+        case let error as NetworkError where error.errorType == .noInternetConnection:
+            let toast = Toast.warning(
+                title: Strings.toastNoInternet,
+                subtitle: Strings.toastSearchUnavailableMessage
+            )
+            return searchRouter.show(toast: toast)
+        default:
+            searchRouter.show(toast: Toast.error(from: error))
+        }
     }
 }

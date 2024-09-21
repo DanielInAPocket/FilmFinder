@@ -21,3 +21,11 @@
 "movie_details_country" = "Country";
 "movie_details_year" = "Year";
 "movie_details_popularity" = "Popularity";
+
+// Toasts
+"toast_error_title" = "Error";
+"toast_warning_title" = "Warning";
+"toast_no_internet" = "No internet connection";
+"toast_search_unavailable_message" = "Search is only available while phone is connected to the internet";
+"toast_cache_message" = "API request failed, using cache instead";
+"toast_no_cache_message" = "No cached data found. API fetch requests can't be made.";

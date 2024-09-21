@@ -20,6 +20,19 @@ struct HomeView: View {
                 .navigationTitle(Strings.homeNavigationTitle)
                 .navigationDestination(for: HomeRoute.self) { $0 }
         }
+        .toast(
+            isPresenting: .init(
+                get: {
+                    navigationState.toast != nil
+                },
+                set: { isPresting in
+                    if isPresting == false {
+                        navigationState.toast = nil
+                    }
+                }
+            ),
+            toast: navigationState.toast
+        )
     }
     
     @ViewBuilder private var rootView: some View {

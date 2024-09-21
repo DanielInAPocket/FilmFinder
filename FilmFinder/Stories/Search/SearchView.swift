@@ -30,6 +30,19 @@ struct SearchView: View {
                 await viewModel.performAction(.searchQuery(newValue))
             }
         }
+        .toast(
+            isPresenting: .init(
+                get: {
+                    navigationState.toast != nil
+                },
+                set: { isPresting in
+                    if isPresting == false {
+                        navigationState.toast = nil
+                    }
+                }
+            ),
+            toast: navigationState.toast
+        )
     }
     
     @ViewBuilder 

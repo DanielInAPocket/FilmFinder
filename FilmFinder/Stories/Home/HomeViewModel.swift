@@ -74,6 +74,11 @@ private extension HomeViewModel {
     }
     
     func show(error: Error) {
-        print("TODO: Imeplement error handling") // TODO: Implement
+        switch error {
+        case let error as NetworkError where error.errorType == .noInternetConnection:
+            return homeRouter.show(toast: .cacheWarning)
+        default:
+            homeRouter.show(toast: Toast.error(from: error))
+        }
     }
 }

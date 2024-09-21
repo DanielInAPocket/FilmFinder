@@ -47,6 +47,15 @@ private extension MovieDetailsViewModel {
     }
     
     func show(error: Error) {
-        print("TODO: Imeplement error handling") // TODO: Implement
+        switch error {
+        case let error as NetworkError where error.errorType == .noInternetConnection:
+            let toast = Toast.error(
+                title: Strings.toastErrorTitle,
+                subtitle: Strings.toastNoCacheMessage
+            )
+            return homeRouter.show(toast: toast)
+        default:
+            homeRouter.show(toast: Toast.error(from: error))
+        }
     }
 }

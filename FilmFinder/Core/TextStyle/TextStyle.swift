@@ -18,6 +18,8 @@ enum TextStyle: String, CaseIterable {
     case detailTitle
     case details
     case searchPlaceholder
+    case toastTitle
+    case toastSubtitle
     
     private var size: CGFloat {
         switch self {
@@ -31,6 +33,8 @@ enum TextStyle: String, CaseIterable {
         case .detailTitle: return 18
         case .details: return 16
         case .searchPlaceholder: return 24
+        case .toastTitle: return 16
+        case .toastSubtitle: return 14
         }
     }
     
@@ -46,6 +50,8 @@ enum TextStyle: String, CaseIterable {
         case .detailTitle: return .heavy
         case .details: return .medium
         case .searchPlaceholder: return .medium
+        case .toastTitle: return .medium
+        case .toastSubtitle: return .regular
         }
     }
     
@@ -55,6 +61,7 @@ enum TextStyle: String, CaseIterable {
         case .detailName: return Colors.Text.textSecondary
         case .details: return Colors.Text.textSecondary
         case .searchPlaceholder: return Colors.Text.textSecondary
+        case .toastSubtitle: return Colors.Text.textSecondary
         default: return Colors.Text.textPrimary
         }
     }

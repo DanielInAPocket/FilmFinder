@@ -42,6 +42,18 @@ public enum Strings {
   public static let searchNavigationTitle = Strings.tr("Localizable", "search_navigation_title", fallback: "Search")
   /// Nothing was found
   public static let searchNotFoundMessage = Strings.tr("Localizable", "search_not_found_message", fallback: "Nothing was found")
+  /// API request failed, using cache instead
+  public static let toastCacheMessage = Strings.tr("Localizable", "toast_cache_message", fallback: "API request failed, using cache instead")
+  /// Error
+  public static let toastErrorTitle = Strings.tr("Localizable", "toast_error_title", fallback: "Error")
+  /// No cached data found. API fetch requests can't be made.
+  public static let toastNoCacheMessage = Strings.tr("Localizable", "toast_no_cache_message", fallback: "No cached data found. API fetch requests can't be made.")
+  /// No internet connection
+  public static let toastNoInternet = Strings.tr("Localizable", "toast_no_internet", fallback: "No internet connection")
+  /// Search is only available while phone is connected to the internet
+  public static let toastSearchUnavailableMessage = Strings.tr("Localizable", "toast_search_unavailable_message", fallback: "Search is only available while phone is connected to the internet")
+  /// Warning
+  public static let toastWarningTitle = Strings.tr("Localizable", "toast_warning_title", fallback: "Warning")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

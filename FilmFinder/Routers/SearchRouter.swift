@@ -23,6 +23,7 @@ extension SearchRoute: View {
 
 class SearchNavigationState: ObservableObject {
     @Published var routes: [SearchRoute] = []
+    @Published var toast: Toast?
 }
 
 @MainActor
@@ -36,5 +37,11 @@ class SearchRouter {
     
     func popToRoot() {
         navigationState.routes = []
+    }
+    
+    func show(toast: Toast) {
+        withAnimation {
+            navigationState.toast = toast
+        }
     }
 }
