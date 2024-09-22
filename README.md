@@ -10,3 +10,6 @@ Project uses helper tools such as SwiftLint and SwiftGen. While they are not rea
 NOTE: Helper scripts use Homebrew to install necessary tools, so be sure to have that installed too.
 
 From now on project should be "Plug and Play" - just run it as a regular iOS project.
+
+# Important
+Project uses TMDB API (The movie data base). According to their own [forums](https://www.themoviedb.org/talk/626c3b5a2ac499004fdf2620), there is a DNS issue when using Claudflare DNS servers. Switching DNS server to anything other then Cloudflare (for example, Googles `8.8.8.8`) fixes the issue.
