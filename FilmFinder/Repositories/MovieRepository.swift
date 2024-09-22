@@ -160,6 +160,9 @@ private extension MovieRepositoryImplementation {
     func tryFetchSearchedMovies(withName name: String, page: Int) async throws -> MoviePage {
         let moviePageDTO = try await apiService.searchMovies(withName: name, page: page)
         let moviePage = MovieMapper.mapToDomain(moviePageDTO)
+        
+        try movieStorage.save(contentsOf: moviePage.movies.map { MovieMapper.mapToDAO($0) })
+
         return moviePage
     }
     

@@ -12,6 +12,7 @@ class MainViewModel: BaseViewModel<MainViewAction, MainViewState> {
     
     @Injected(\.homeRouter) private var homeRouter
     @Injected(\.searchRouter) private var searchRouter
+    @Injected(\.watchlistRouter) private var watchlistRouter
     
     init() {
         super.init(state: .init())
@@ -42,7 +43,7 @@ private extension MainViewModel {
         case .search:
             searchRouter.popToRoot()
         case .watchList:
-            break
+            watchlistRouter.popToRoot()
         }
     }
 }

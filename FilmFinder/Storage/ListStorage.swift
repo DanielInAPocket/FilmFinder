@@ -34,7 +34,7 @@ class ListStorageImplementation: BaseStorage<ListDAO>, ListStorage {
     func remove(_ object: ListDAO) throws {
         let list = try loadBy(typeString: object.type)
         try realm.write {
-            var filteredMovieIds = List<Int>()
+            let filteredMovieIds = List<Int>()
             filteredMovieIds.append(objectsIn: Array(list.movieIds).filter { !object.movieIds.contains($0) })
             list.movieIds = filteredMovieIds
         }
