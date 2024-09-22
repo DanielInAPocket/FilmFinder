@@ -76,6 +76,7 @@ struct WatchListView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(32)
     }
     
     @ViewBuilder

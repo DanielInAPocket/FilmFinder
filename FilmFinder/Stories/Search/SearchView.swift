@@ -75,6 +75,7 @@ struct SearchView: View {
                 .foregroundColor(Colors.Text.textSecondary.color)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(32)
     }
     
     @ViewBuilder
