@@ -8,11 +8,11 @@
 import SwiftUI
 import SFSafeSymbols
 
-public enum Toast: Equatable {
+enum Toast: Equatable {
     case error(title: String, subtitle: String? = nil)
     case warning(title: String, subtitle: String? = nil)
 
-    public var title: String {
+    var title: String {
         switch self {
         case .error(let title, _),
                 .warning(let title, _):
@@ -20,7 +20,7 @@ public enum Toast: Equatable {
         }
     }
 
-    public var subtitle: String? {
+    var subtitle: String? {
         switch self {
         case .error(_, let subtitle),
                 .warning(_, let subtitle):
@@ -28,12 +28,12 @@ public enum Toast: Equatable {
         }
     }
 
-    public var duration: TimeInterval {
+    var duration: TimeInterval {
         return 5.0
     }
 }
 
-public extension Toast {
+extension Toast {
     
     static var cacheWarning: Toast {
         return .warning(title: Strings.toastWarningTitle, subtitle: Strings.toastCacheMessage)

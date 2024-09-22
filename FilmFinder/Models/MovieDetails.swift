@@ -19,7 +19,9 @@ struct MovieDetails: Hashable, Identifiable {
     var id: Int {
         movieId
     }
-    
+}
+
+extension MovieDetails {
     static var empty: MovieDetails {
         .init(
             movieId: 0,

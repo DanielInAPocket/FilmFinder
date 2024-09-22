@@ -44,14 +44,17 @@ struct MovieDetailsMapper {
             actors: model.actors.map { PersonMapper.mapToDAO($0) }
         )
     }
+}
+
+private extension MovieDetailsMapper {
     
-    private static func mapRuntimeToString(_ runtime: Int) -> String {
+    static func mapRuntimeToString(_ runtime: Int) -> String {
         let hours = runtime / 60
         let minutes = runtime % 60
         return "\(hours)h \(minutes)m"
     }
     
-    private static func mapReleaseDateToYearString(_ releaseDate: String) -> String {
+    static func mapReleaseDateToYearString(_ releaseDate: String) -> String {
         let dateFormatter = DateFormatter.iso8601
         let date = dateFormatter.date(from: releaseDate)
         if let date {
@@ -60,16 +63,4 @@ struct MovieDetailsMapper {
             return "N/A"
         }
     }
-}
-
-public extension DateFormatter {
-    
-    static let iso8601: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter
-    }()
 }

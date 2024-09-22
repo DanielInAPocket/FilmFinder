@@ -15,7 +15,7 @@ enum ApplicationTab: Hashable, CaseIterable {
 }
 
 extension ApplicationTab {
-    public var title: String {
+    var title: String {
         switch self {
         case .home: Strings.bottomMenuHomeTitle
         case .search: Strings.bottomMenuSearchTitle
@@ -23,7 +23,7 @@ extension ApplicationTab {
         }
     }
     
-    public var symbol: SFSymbol {
+    var symbol: SFSymbol {
         switch self {
         case .home: .popcorn
         case .search: .magnifyingglass

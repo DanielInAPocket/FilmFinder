@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-public struct Shimmer: ViewModifier {
+struct Shimmer: ViewModifier {
     @State private var phase: CGFloat = 0
     var duration = 1.5
     var bounce = false
 
-    public func body(content: Content) -> some View {
+    func body(content: Content) -> some View {
         content
             .modifier(
                 AnimatedMask(phase: phase)
@@ -55,7 +55,7 @@ public struct Shimmer: ViewModifier {
     }
 }
 
-public extension View {
+extension View {
     @ViewBuilder func shimmering(
         active: Bool = true,
         duration: Double = 1.5,

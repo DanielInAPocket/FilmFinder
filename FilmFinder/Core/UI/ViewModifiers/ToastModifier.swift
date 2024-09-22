@@ -74,7 +74,7 @@ struct ToastModifier: ViewModifier {
     }
 }
 
-public extension View {
+extension View {
     func toast(
         isPresenting: Binding<Bool>,
         duration: Double = 5.0,

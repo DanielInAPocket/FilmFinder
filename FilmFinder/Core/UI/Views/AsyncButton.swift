@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-public struct AsyncButton<Label: View>: View {
+struct AsyncButton<Label: View>: View {
     
     private var action: () async -> Void
     private var label: Label
     
     @State private var isPerformingTask = false
     
-    public init(
+    init(
         action: @escaping () async -> Void,
         @ViewBuilder label: () -> Label
     ) {
@@ -22,7 +22,7 @@ public struct AsyncButton<Label: View>: View {
         self.label = label()
     }
 
-    public var body: some View {
+    var body: some View {
         Button(
             action: {
                 isPerformingTask = true

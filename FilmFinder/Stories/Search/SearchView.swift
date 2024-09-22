@@ -21,7 +21,7 @@ struct SearchView: View {
             rootView
                 .background(Colors.background.color)
                 .navigationTitle(Strings.searchNavigationTitle)
-                .navigationDestination(for: SearchRoute.self) { $0 }
+                .navigationDestination(for: MovieRoute.self) { $0 }
         }
         .searchable(text: $searchText)
         .autocorrectionDisabled(true)

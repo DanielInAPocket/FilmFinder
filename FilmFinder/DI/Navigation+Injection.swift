@@ -11,22 +11,22 @@ import Factory
 extension Container {
     
     @MainActor var homeRouter: Factory<HomeRouter> {
-        self { HomeRouter() }
+        self { HomeRouterImplementation(navigationState: self.homeNavigationState()) }
             .singleton
     }
     
     @MainActor var searchRouter: Factory<SearchRouter> {
-        self { SearchRouter() }
+        self { SearchRouterImplementation(navigationState: self.searchNavigationState()) }
             .singleton
     }
     
-    var homeNavigationState: Factory<HomeNavigationState> {
-        self { HomeNavigationState() }
+    var homeNavigationState: Factory<BaseNavigationState<MovieRoute>> {
+        self { BaseNavigationState() }
             .singleton
     }
     
-    var searchNavigationState: Factory<SearchNavigationState> {
-        self { SearchNavigationState() }
+    var searchNavigationState: Factory<BaseNavigationState<MovieRoute>> {
+        self { BaseNavigationState() }
             .singleton
     }
 }

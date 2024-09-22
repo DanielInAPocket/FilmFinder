@@ -18,7 +18,7 @@ struct HomeView: View {
             rootView
                 .background(Colors.background.color)
                 .navigationTitle(Strings.homeNavigationTitle)
-                .navigationDestination(for: HomeRoute.self) { $0 }
+                .navigationDestination(for: MovieRoute.self) { $0 }
         }
         .toast(
             isPresenting: .init(
@@ -35,7 +35,8 @@ struct HomeView: View {
         )
     }
     
-    @ViewBuilder private var rootView: some View {
+    @ViewBuilder 
+    private var rootView: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 24) {
                 section(

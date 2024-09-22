@@ -5,43 +5,17 @@
 //  Created by Daniel Klinge on 21/09/2024.
 //
 
-import SwiftUI
-import Factory
+import Foundation
 
-enum SearchRoute: BaseRoute {
-    case movieDetails(Movie)
+protocol SearchRouter {
+    func showDetails(for movie: Movie)
+    func popToRoot()
+    func show(toast: Toast)
 }
 
-extension SearchRoute: View {
-    var body: some View {
-        switch self {
-        case .movieDetails(let movie):
-            MovieDetailsView(movie: movie)
-        }
-    }
-}
-
-class SearchNavigationState: ObservableObject {
-    @Published var routes: [SearchRoute] = []
-    @Published var toast: Toast?
-}
-
-@MainActor
-class SearchRouter {
-    
-    @Injected(\.searchNavigationState) private var navigationState
-    
+class SearchRouterImplementation: BaseRouter<MovieRoute>, SearchRouter {
+        
     func showDetails(for movie: Movie) {
-        navigationState.routes.append(.movieDetails(movie))
-    }
-    
-    func popToRoot() {
-        navigationState.routes = []
-    }
-    
-    func show(toast: Toast) {
-        withAnimation {
-            navigationState.toast = toast
-        }
+        presentRoute(.movieDetails(movie))
     }
 }

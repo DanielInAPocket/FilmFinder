@@ -26,24 +26,6 @@ final class MovieAPIServiceImplementation: MovieAPIService {
         }
     }
     
-    private func getNowPlaying(page: Int) async throws -> MoviePageDTO {
-        let request = MovieRequest.getNowPlaying(page: page)
-        let response: MoviePageDTO = try await dispatcher.fetch(with: request)
-        return response
-    }
-    
-    private func getPopular(page: Int) async throws -> MoviePageDTO {
-        let request = MovieRequest.getPopular(page: page)
-        let response: MoviePageDTO = try await dispatcher.fetch(with: request)
-        return response
-    }
-
-    private func getTrending(page: Int) async throws -> MoviePageDTO {
-        let request = MovieRequest.getTrending(page: page)
-        let response: MoviePageDTO = try await dispatcher.fetch(with: request)
-        return response
-    }
-
     func getMovieDetails(forId id: Int) async throws -> MovieDTO {
         let request = MovieRequest.getMovieDetails(id: id)
         let response: MovieDTO = try await dispatcher.fetch(with: request)
@@ -52,6 +34,27 @@ final class MovieAPIServiceImplementation: MovieAPIService {
     
     func searchMovies(withName name: String, page: Int) async throws -> MoviePageDTO {
         let request = MovieRequest.search(forName: name, page: page)
+        let response: MoviePageDTO = try await dispatcher.fetch(with: request)
+        return response
+    }
+}
+
+private extension MovieAPIServiceImplementation {
+    
+    func getNowPlaying(page: Int) async throws -> MoviePageDTO {
+        let request = MovieRequest.getNowPlaying(page: page)
+        let response: MoviePageDTO = try await dispatcher.fetch(with: request)
+        return response
+    }
+    
+    func getPopular(page: Int) async throws -> MoviePageDTO {
+        let request = MovieRequest.getPopular(page: page)
+        let response: MoviePageDTO = try await dispatcher.fetch(with: request)
+        return response
+    }
+
+    func getTrending(page: Int) async throws -> MoviePageDTO {
+        let request = MovieRequest.getTrending(page: page)
         let response: MoviePageDTO = try await dispatcher.fetch(with: request)
         return response
     }
