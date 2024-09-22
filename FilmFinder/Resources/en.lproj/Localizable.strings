@@ -29,3 +29,7 @@
 "toast_search_unavailable_message" = "Search is only available while phone is connected to the internet";
 "toast_cache_message" = "API request failed, using cache instead";
 "toast_no_cache_message" = "No cached data found. API fetch requests can't be made.";
+
+// Watchlist
+"watchlist_navigation_title" = "Watchlist";
+"watchlist_empty_message" = "Add movies to watchlist by pressing a button in movie details";

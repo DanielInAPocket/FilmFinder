@@ -23,6 +23,7 @@ final class MovieAPIServiceImplementation: MovieAPIService {
         case .nowPlaying: return try await getNowPlaying(page: page)
         case .popular: return try await getPopular(page: page)
         case .trending: return try await getTrending(page: page)
+        case .watchlist: throw ApiError.apiUnavailable
         }
     }
     

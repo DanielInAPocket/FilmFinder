@@ -20,12 +20,22 @@ extension Container {
             .singleton
     }
     
+    @MainActor var watchlistRouter: Factory<WatchlistRouter> {
+        self { WatchlistRouterImplementation(navigationState: self.watchlistNavigationState()) }
+            .singleton
+    }
+    
     var homeNavigationState: Factory<BaseNavigationState<MovieRoute>> {
         self { BaseNavigationState() }
             .singleton
     }
     
     var searchNavigationState: Factory<BaseNavigationState<MovieRoute>> {
+        self { BaseNavigationState() }
+            .singleton
+    }
+    
+    var watchlistNavigationState: Factory<BaseNavigationState<MovieRoute>> {
         self { BaseNavigationState() }
             .singleton
     }

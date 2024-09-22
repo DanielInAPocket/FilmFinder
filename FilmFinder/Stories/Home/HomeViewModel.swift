@@ -62,6 +62,8 @@ private extension HomeViewModel {
         case .nowPlaying: return state.nowPlaying
         case .popular: return state.popular
         case .trending: return state.trending
+        // NOTE: Watchlist isn't shown on main screen, hence it should never be executed
+        case .watchlist: return .init(listType: .watchlist)
         }
     }
     
@@ -70,6 +72,7 @@ private extension HomeViewModel {
         case .nowPlaying: state.nowPlaying = sectionState
         case .popular: state.popular = sectionState
         case .trending: state.trending = sectionState
+        case .watchlist: break
         }
     }
     

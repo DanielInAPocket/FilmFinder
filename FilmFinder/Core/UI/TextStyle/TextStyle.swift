@@ -17,7 +17,7 @@ enum TextStyle: String, CaseIterable {
     case detailValue
     case detailTitle
     case details
-    case searchPlaceholder
+    case emptyScreenMessage
     case toastTitle
     case toastSubtitle
     
@@ -32,7 +32,7 @@ enum TextStyle: String, CaseIterable {
         case .detailValue: return 14
         case .detailTitle: return 18
         case .details: return 16
-        case .searchPlaceholder: return 24
+        case .emptyScreenMessage: return 20
         case .toastTitle: return 16
         case .toastSubtitle: return 14
         }
@@ -49,7 +49,7 @@ enum TextStyle: String, CaseIterable {
         case .detailValue: return .medium
         case .detailTitle: return .heavy
         case .details: return .medium
-        case .searchPlaceholder: return .medium
+        case .emptyScreenMessage: return .medium
         case .toastTitle: return .medium
         case .toastSubtitle: return .regular
         }
@@ -60,7 +60,7 @@ enum TextStyle: String, CaseIterable {
         case .movieRating: return Colors.Text.textSecondary
         case .detailName: return Colors.Text.textSecondary
         case .details: return Colors.Text.textSecondary
-        case .searchPlaceholder: return Colors.Text.textSecondary
+        case .emptyScreenMessage: return Colors.Text.textSecondary
         case .toastSubtitle: return Colors.Text.textSecondary
         default: return Colors.Text.textPrimary
         }

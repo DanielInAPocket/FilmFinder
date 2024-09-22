@@ -22,7 +22,7 @@ class MovieDetailsViewModel: BaseViewModel<MovieDetailsViewAction, MovieDetailsV
         case .initialize:
             await initialize()
         case .toggleWatchlist:
-            break
+            toggleWatchlist()
         }
     }
 }
@@ -35,11 +35,29 @@ private extension MovieDetailsViewModel {
             state.isLoading = false
         }
         
+        await getDetails()
+        getWatchlistStatus()
+    }
+    
+    func getDetails() async {
         let result = await movieRepository.getDetails(forMovieId: state.movie.id)
         
         if let details = result.getData() {
             state.details = details
         }
+        
+        if let error = result.getError() {
+            show(error: error)
+        }
+    }
+    
+    func getWatchlistStatus() {
+        state.isWatchlisted = movieRepository.isWatchlistedMovie(withId: state.movie.id)
+    }
+    
+    func toggleWatchlist() {
+        let result = movieRepository.toggleWatchlist(forMovieId: state.movie.id)
+        getWatchlistStatus()
         
         if let error = result.getError() {
             show(error: error)

@@ -7,8 +7,9 @@
 
 import Foundation
 
-enum ListType: String {
+enum ListType: String, CaseIterable {
     case nowPlaying
     case popular
     case trending
+    case watchlist
 }

@@ -11,4 +11,5 @@ struct MovieDetailsViewState: BaseViewState {
     var isLoading = false
     var movie: Movie
     var details: MovieDetails = .empty
+    var isWatchlisted = false
 }

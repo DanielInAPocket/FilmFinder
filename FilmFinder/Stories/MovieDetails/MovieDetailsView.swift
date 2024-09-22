@@ -43,6 +43,20 @@ struct MovieDetailsView: View {
             .padding(.bottom)
         }
         .navigationBarTitle("", displayMode: .inline)
+        .toolbar {
+            AsyncButton(
+                action: {
+                    await viewModel.performAction(.toggleWatchlist)
+                },
+                label: {
+                    Image(systemSymbol: viewModel.state.isWatchlisted ? .heartFill : .heart)
+                        .foregroundColor(Colors.Button.buttonForeground.color)
+                        .frame(width: 40, height: 40)
+                        .background(Colors.Button.buttonBackground.color)
+                        .clipShape(.rect(cornerRadius: 20))
+                }
+            )
+        }
         .task {
             await viewModel.performAction(.initialize)
         }
@@ -52,19 +66,6 @@ struct MovieDetailsView: View {
     @ViewBuilder
     private var header: some View {
         VStack(spacing: 8) {
-//                AsyncButton(
-//                    action: {
-//                        await viewModel.performAction(.toggleWatchlist)
-//                    },
-//                    label: {
-//                        Image(systemSymbol: .heart)
-//                            .foregroundColor(Colors.Button.buttonForeground.color)
-//                            .frame(width: 40, height: 40)
-//                            .background(Colors.Button.buttonBackground.color)
-//                            .clipShape(.rect(cornerRadius: 20))
-//                    }
-//                )
-
             HStack {
                 Spacer()
                 

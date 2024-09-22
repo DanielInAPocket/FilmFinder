@@ -54,6 +54,10 @@ public enum Strings {
   public static let toastSearchUnavailableMessage = Strings.tr("Localizable", "toast_search_unavailable_message", fallback: "Search is only available while phone is connected to the internet")
   /// Warning
   public static let toastWarningTitle = Strings.tr("Localizable", "toast_warning_title", fallback: "Warning")
+  /// Add movies to watchlist by pressing a button in movie details
+  public static let watchlistEmptyMessage = Strings.tr("Localizable", "watchlist_empty_message", fallback: "Add movies to watchlist by pressing a button in movie details")
+  /// Watchlist
+  public static let watchlistNavigationTitle = Strings.tr("Localizable", "watchlist_navigation_title", fallback: "Watchlist")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

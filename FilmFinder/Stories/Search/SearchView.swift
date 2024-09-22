@@ -66,7 +66,7 @@ struct SearchView: View {
     private func message(text: String, icon: SFSymbol) -> some View {
         VStack(spacing: 16) {
             Text(text)
-                .style(.searchPlaceholder)
+                .style(.emptyScreenMessage)
             
             Image(systemSymbol: icon)
                 .resizable()

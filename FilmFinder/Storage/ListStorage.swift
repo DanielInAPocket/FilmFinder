@@ -11,6 +11,7 @@ import RealmSwift
 protocol ListStorage {
     func override(_ object: ListDAO) throws
     func append(_ object: ListDAO) throws
+    func remove(_ object: ListDAO) throws
 
     func loadBy(type: ListType) throws -> ListDAO
     
@@ -27,6 +28,15 @@ class ListStorageImplementation: BaseStorage<ListDAO>, ListStorage {
         let list = try loadBy(typeString: object.type)
         try realm.write {
             list.movieIds.append(objectsIn: object.movieIds)
+        }
+    }
+
+    func remove(_ object: ListDAO) throws {
+        let list = try loadBy(typeString: object.type)
+        try realm.write {
+            var filteredMovieIds = List<Int>()
+            filteredMovieIds.append(objectsIn: Array(list.movieIds).filter { !object.movieIds.contains($0) })
+            list.movieIds = filteredMovieIds
         }
     }
 

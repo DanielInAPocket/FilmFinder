@@ -9,9 +9,15 @@ import Foundation
 import Factory
 
 protocol MovieRepository {
+    func initStorage()
+    
     func getMovies(forList list: ListType, page: Int) async -> RepositoryResult<MoviePage>
     func getDetails(forMovieId movieId: Int) async -> RepositoryResult<MovieDetails>
     func search(for movieName: String, page: Int) async -> RepositoryResult<MoviePage>
+    
+    func getWatchlistedMovies() -> RepositoryResult<MoviePage>
+    func toggleWatchlist(forMovieId movieId: Int) -> RepositoryResult<Void>
+    func isWatchlistedMovie(withId movieId: Int) -> Bool
 }
 
 class MovieRepositoryImplementation: MovieRepository {
@@ -20,6 +26,16 @@ class MovieRepositoryImplementation: MovieRepository {
     @Injected(\.listStorage) private var listStorage
     @Injected(\.movieStorage) private var movieStorage
     @Injected(\.movieDetailsStorage) private var movieDetailsStorage
+    
+    func initStorage() {
+        do {
+            for listType in ListType.allCases {
+                try listStorage.override(.init(type: listType.rawValue, movieIds: []))
+            }
+        } catch {
+            print("❌ Storage initialization failed with error: \(error)")
+        }
+    }
     
     func getMovies(forList list: ListType, page: Int) async -> RepositoryResult<MoviePage> {
         do {
@@ -55,6 +71,32 @@ class MovieRepositoryImplementation: MovieRepository {
             return .latest(data: movieDetails)
         } catch {
             return .failure(error: error)
+        }
+    }
+    
+    func getWatchlistedMovies() -> RepositoryResult<MoviePage> {
+        do {
+            let moviePage = try tryLoadingCachedMovies(forList: .watchlist)
+            return .latest(data: moviePage)
+        } catch {
+            return .failure(error: error)
+        }
+    }
+    
+    func toggleWatchlist(forMovieId movieId: Int) -> RepositoryResult<Void> {
+        do {
+            try tryToggleWatchlist(forMovieId: movieId)
+            return .latest(data: Void())
+        } catch {
+            return .failure(error: error)
+        }
+    }
+    
+    func isWatchlistedMovie(withId movieId: Int) -> Bool {
+        do {
+            return try tryCheckMovieInWatchlist(forMovieId: movieId)
+        } catch {
+            return false
         }
     }
 }
@@ -119,5 +161,23 @@ private extension MovieRepositoryImplementation {
         let moviePageDTO = try await apiService.searchMovies(withName: name, page: page)
         let moviePage = MovieMapper.mapToDomain(moviePageDTO)
         return moviePage
+    }
+    
+    // MARK: - Watchlist
+    
+    func tryToggleWatchlist(forMovieId movieId: Int) throws {
+        let listType = ListType.watchlist
+        let listDAO = try listStorage.loadBy(type: listType)
+        
+        if listDAO.movieIds.contains(movieId) {
+            try listStorage.remove(.init(type: listType.rawValue, movieIds: [movieId]))
+        } else {
+            try listStorage.append(.init(type: listType.rawValue, movieIds: [movieId]))
+        }
+    }
+    
+    func tryCheckMovieInWatchlist(forMovieId movieId: Int) throws -> Bool {
+        let listDAO = try listStorage.loadBy(type: .watchlist)
+        return listDAO.movieIds.contains(movieId)
     }
 }
